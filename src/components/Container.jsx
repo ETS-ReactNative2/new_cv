@@ -1,6 +1,8 @@
-import React from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import styled from 'styled-components'
 import devices from '../utils/devices'
+import panels from '../utils/panels'
+import Item from './Item';
 
 const AppStyle = styled.div`
   width: 700px;
@@ -21,11 +23,43 @@ const AppStyle = styled.div`
 `
 
 const Container = () => {
-  return (
-    <div>
-      
-    </div>
-  )
+    const appRef = useRef()
+
+    const [currentIndex, setIndex] = useState(-1)
+    const [width, setWidth] = useState()
+    const [height, setHeight] = useState()
+    const [x, setX] = useState()
+    const [y, setY] = useState()
+
+    useEffect(() => {
+        if (appRef) {
+            setWidth(appRef.current.getBoundingClientRect().width)
+            setHeight(appRef.current.getBoundingClientRect().height)
+            setX(appRef.current.getBoundingClientRect().x)
+            setY(appRef.current.getBoundingClientRect().y)
+        }
+    }, [appRef])
+
+    return (
+        <AppStyle ref={appRef}>
+            {
+                panels.map((panel, i) => (
+                    <Item
+                        key={i}
+                        index={i}
+                        icon={panel.icon}
+                        currentIndex={currentIndex}
+                        setIndex={setIndex}
+                        title={panel.title}
+                        parentWidth={width}
+                        parentHeight={height}
+                        parentX={x}
+                        parentY={y} 
+                    />
+                ))
+            }
+        </AppStyle>
+    )
 }
 
 export default Container
