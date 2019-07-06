@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import styled from 'styled-components'
 import devices from '../../utils/devices'
 import { usePanelValues } from '../../context/panelContext';
@@ -31,13 +31,13 @@ const QuoteStyle = styled.div`
 const Quote = ({ display, skills }) => {
     const slideDuration = 900
 
-    const quoteRef = React.useRef()
+    const quoteRef = useRef()
 
     const [{currentIndex, selectedName}, dispatch] = usePanelValues()
 
-    const [quote, setQuote] = React.useState('')
-    const [index, setIndex] = React.useState(currentIndex)
-    const [x, setX] = React.useState(-200)
+    const [quote, setQuote] = useState('')
+    const [index, setIndex] = useState(currentIndex)
+    const [x, setX] = useState(-200)
 
     const transitionQuote = () => {
         if (quoteRef) {
@@ -53,13 +53,13 @@ const Quote = ({ display, skills }) => {
         }
     }
 
-    React.useEffect(() => {
+    useEffect(() => {
         transitionQuote()
     }, [display, currentIndex])
 
-    React.useEffect(() => {
+    useEffect(() => {
         if (selectedName) skills.find(skill => {
-            if (skill.name === name)
+            if (skill.name === selectedName)
                 setTimeout(() => setQuote(skill.quote), 300)
         })
         else setQuote('')

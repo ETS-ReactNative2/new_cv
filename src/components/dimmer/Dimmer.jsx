@@ -17,7 +17,7 @@ const ItemDimmer = styled.div`
 `
 
 const Dimmer = () => {
-    const [{expandDuration, expand}, dispatch] = usePanelValues()
+    const [{expandDuration, expand}, _] = usePanelValues()
 
     return (
         <ItemDimmer

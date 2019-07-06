@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import TitlePanel from '../TitlePanel';
+import TitlePanel from './TitlePanel';
 import Skills from '../skills/Skills';
 import skills from '../../utils/skills'
 

@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect } from 'react'
+import React, { useRef, useState } from 'react'
 import styled from 'styled-components'
 import Quote from '../skills/Quote';
 import CircularGauge from '../skills/CircularGauge';
@@ -41,8 +41,6 @@ const DimmerContent = () => {
         setQuoteDisplay(false)
         dispatch({ type: MINIMIZE })
     }
-
-    console.log(item)
 
     return (
         <ItemContentShadow

@@ -149,7 +149,7 @@ const CircularGauge = ({ skill, displayQuote, index }) => {
                                     colors.map((color, i) => {
                                         let length = colors.length
 
-                                        return <stop offset={`${i === 0 ? 0 : (100 / (length - i))}%`} stop-color={color} />
+                                        return <stop key={i} offset={`${i === 0 ? 0 : (100 / (length - i))}%`} stopColor={color} />
                                     })
                                 }
                             </linearGradient>

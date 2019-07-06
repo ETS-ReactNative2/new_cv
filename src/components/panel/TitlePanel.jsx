@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect} from 'react'
 import styled from 'styled-components'
-import devices from '../utils/devices'
+import devices from '../../utils/devices'
 
 const TitlePanelStyle = styled.h3`
     cursor: pointer;

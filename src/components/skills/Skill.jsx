@@ -33,7 +33,6 @@ const Skill = ({ item, index }) => {
     const [{expand}, dispatch] = usePanelValues()
 
     const handleClick = item => {
-        console.log(item)
         dispatch({ type: EXPAND })
         dispatch({ type: SET_ITEM, payload: item })
     }
