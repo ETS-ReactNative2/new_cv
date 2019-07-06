@@ -1,13 +1,17 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './App.css';
-import Container from './components/Container';
+import Panels from './components/panel/Panels';
+import Dimmer from './components/dimmer/Dimmer';
+import { PanelProvider } from './context/panelContext'
+import panelReducer from './reducer/panelReducer';
 
-class App extends Component {
-  render() {
-    return (
-      <Container />
-    );
-  }
+const App = () => {
+  return (
+    <PanelProvider reducer={panelReducer}>
+      <Panels />
+      <Dimmer />
+    </PanelProvider>
+  );
 }
 
 export default App;

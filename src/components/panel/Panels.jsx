@@ -1,10 +1,10 @@
 import React, { useState, useRef, useEffect } from 'react'
 import styled from 'styled-components'
-import devices from '../utils/devices'
-import panels from '../utils/panels'
-import Item from './Item';
+import devices from '../../utils/devices'
+import panels from '../../utils/panels'
+import Panel from './Panel';
 
-const AppStyle = styled.div`
+const PanelsStyle = styled.div`
   width: 700px;
   min-height: 600px;
   display: grid;
@@ -22,7 +22,7 @@ const AppStyle = styled.div`
   }
 `
 
-const Container = () => {
+const Panels = () => {
     const appRef = useRef()
 
     const [currentIndex, setIndex] = useState(-1)
@@ -41,10 +41,10 @@ const Container = () => {
     }, [appRef])
 
     return (
-        <AppStyle ref={appRef}>
+        <PanelsStyle ref={appRef}>
             {
                 panels.map((panel, i) => (
-                    <Item
+                    <Panel
                         key={i}
                         index={i}
                         icon={panel.icon}
@@ -58,8 +58,8 @@ const Container = () => {
                     />
                 ))
             }
-        </AppStyle>
+        </PanelsStyle>
     )
 }
 
-export default Container
+export default Panels
