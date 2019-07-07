@@ -78,7 +78,7 @@ const ChoosePanel = ({name}) => {
     default:
       return (
         <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. A unde, quam nam ut amet laborum iusto id, voluptate, temporibus beatae maiores accusamus sit neque. Molestias, rerum. Omnis corporis ad iure obcaecati in error repudiandae saepe deserunt officia nesciunt quae ea, cumque consequuntur, labore laborum iste provident. Corrupti ea, illo inventore, sed accusamus velit non quasi voluptatem, quia doloremque libero labore minus aliquam dolores. Quod repellat architecto odit corporis commodi quibusdam.
+          Unknow Component
         </p>
       )
   }

@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react'
 import styled, { keyframes } from 'styled-components'
+import devices from '../../utils/devices';
 
 let bdayArray = ['birthday-cake', 'atom', 'baby', 'baby-carriage', 'child', 'skating', 'school', 'user-graduate', 'walking', 'laptop-code', 'hat-wizard', 'blind', 'bed', 'jedi']
 
@@ -46,6 +47,10 @@ const ListItemStyle = styled.div`
     margin-top: 50px;
     border-radius: 2px;
     border: 2px solid rgba(0, 0, 0, .6);
+
+    @media ${devices.mobileL} { 
+        .content {font-size: .8em; }
+    }
 
     .item {
         height: 50px;

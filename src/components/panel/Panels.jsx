@@ -17,8 +17,6 @@ const PanelsStyle = styled.div`
 
     @media ${devices['mobileL']} {
         width: 100%;
-        grid-template-columns: repeat(2, 50%);
-        border: 1px solid red;
     }
 `
 

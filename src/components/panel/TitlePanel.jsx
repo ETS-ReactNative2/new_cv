@@ -10,6 +10,7 @@ const TitlePanelStyle = styled.h3`
     margin: 0;
     padding: 0 5px;
     height: 30px;
+    width: 80%;
     left: ${props => props.index === -1 ? props.normalX/2 : props.expandX/2}px;
     top: ${props => props.index === -1 ? props.y/2 : 10}px;
     transform: translate(-50%, ${props => props.index === -1 ? -50 : 0}%);
@@ -20,6 +21,12 @@ const TitlePanelStyle = styled.h3`
 
     & > i {
         margin-right: 20px;
+    }
+
+    @media ${devices.mobileL} { 
+        font-size: .8em; 
+        line-height: 30px;
+        & > i { margin-right: 10px; }
     }
 `
 
