@@ -6,7 +6,7 @@ import Panel from './Panel';
 
 const PanelsStyle = styled.div`
     width: 700px;
-    min-height: 600px;
+    height: 100%;
     display: grid;
     grid-template-columns: repeat(2, 50%);
     grid-template-rows: repeat(2, 50%);
@@ -17,6 +17,8 @@ const PanelsStyle = styled.div`
 
     @media ${devices['mobileL']} {
         width: 100%;
+        height: 600px;
+        margin: 10% 0;
     }
 `
 

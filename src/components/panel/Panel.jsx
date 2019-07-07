@@ -9,6 +9,7 @@ import SchoolingList from '../schooling/SchoolingList';
 const PanelStyle = styled.div`
   position: relative;
   width: 100%;
+  height: 100%;
 
   &:nth-child(1) {
     z-index: ${props => props.index + 1 === 1 ? 99 : 0};
