@@ -4,6 +4,7 @@ import TitlePanel from './TitlePanel';
 import Skills from '../skills/Skills';
 import ListItem from '../professionnal/Experiences';
 import AboutList from '../about/AboutList';
+import SchoolingList from '../schooling/SchoolingList';
 
 const PanelStyle = styled.div`
   position: relative;
@@ -70,7 +71,10 @@ const ChoosePanel = ({name}) => {
       
     case 'About Me':
       return <AboutList />
-      
+    
+    case 'Schooling':
+      return <SchoolingList />
+
     default:
       return (
         <p>

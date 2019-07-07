@@ -5,7 +5,7 @@ const BadgeStyle = styled.span`
   height: 25px;
   min-width: 70px;
   background-color: cadetblue;
-  margin: 0 3px 10px;
+  margin: 0 10px 10px;
   padding: 3px 5px;
   position: relative;
   overflow: hidden;

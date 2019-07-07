@@ -9,7 +9,6 @@ const ItemContent = styled.div`
   display: flex;
   flex-wrap: wrap;
   border-radius: 5px;
-  justify-content: space-around;
 `
 
 const ItemTitle = styled.h3`
@@ -24,6 +23,9 @@ const ItemStyle = styled.li`
   height: auto;
   padding: 0 5px;
   z-index: 1;
+  border-bottom: 2px solid;
+  &:first-child { border-top: 2px solid; }
+  &:last-child { border-bottom: none; }
 `
 
 const Skill = ({ item, index }) => {

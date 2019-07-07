@@ -202,7 +202,7 @@ const AboutList = () => {
                         }
                     </div>
                 </span>
-                <span className='content'>06/04/1992 à Pointe Noire</span>
+                <span className='content'>06/04/1992 at Pointe Noire (Rep. of Congo)</span>
             </li>
             <li className='item'>
                 <span onClick={toogle.svgDisplay} className='icon'>
@@ -227,7 +227,7 @@ const AboutList = () => {
                         </g>
                     </svg>
                 </span>
-                <span className='content'>18 rue fouré 44000 Nantes</span>
+                <span className='content'>4th Mare Huguet street 93110 Rosny-sous-Bois</span>
             </li>
             <li className='item'>
                 <span id='car' onClick={toogle.carMoving} className='icon'>
