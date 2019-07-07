@@ -12,6 +12,7 @@ const CircularGaugeStyle = styled.div`
 
   & .circle {
     position: relative;
+    cursor: pointer;
 
     & .circle__svg {
       transform: rotate(-90deg);
@@ -41,7 +42,16 @@ const CircularGaugeStyle = styled.div`
     font-weight: bold;
     transform: translate(-50%, -50%);
 
-    & .value { font-size: 28px; }
+    & .value { 
+        font-size: 28px; 
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -khtml-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        outline-style:none;
+    }
   }
 
   & .label {
@@ -78,8 +88,8 @@ const CircularGauge = ({ skill, displayQuote, index }) => {
     let increaseInterval = null
 
     const handleClick = name => {
-        displayQuote(name, index)
         dispatch({ type: SET_INDEX, payload: currentIndex === index ? -1 : index})
+        displayQuote(name, currentIndex)
     }
 
     const strokeTransition = () => {
@@ -139,7 +149,7 @@ const CircularGauge = ({ skill, displayQuote, index }) => {
             initialStroke={circumference}
             isSelected={circleSelected.isSelected}
         >
-            <div className="circle" onClick={() => handleClick(name)}>
+            <div as='button' className="circle" onClick={() => handleClick(name)}>
                 <svg width="100" height="100" className="circle__svg">
                     {
                         expand && colors.length > 0 &&

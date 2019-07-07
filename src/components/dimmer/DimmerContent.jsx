@@ -33,7 +33,7 @@ const DimmerContent = () => {
     const [{ item, panelWidth, panelHeight, panelX, panelY, expand, expandDuration, currentIndex }, dispatch] = usePanelValues()
 
     const displayQuote = (name, index) => {
-        setQuoteDisplay(index !== currentIndex ? true : false)
+        setQuoteDisplay(name ? true : false)
         dispatch({ type: SET_NAME, payload: name })
     }
 

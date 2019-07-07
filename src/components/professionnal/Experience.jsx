@@ -13,7 +13,7 @@ const ExperienceStyle = styled.li`
   & .item-header {
     height: 50px;
     line-height: 50px;
-    // color: darkgreen;
+    cursor: pointer;
     
     & > i {      
       margin: 0 20px;

@@ -12,6 +12,7 @@ const ItemDimmerClose = styled.span`
   background-color: white;
   text-align: center;
   line-height: 25px;
+  cursor: pointer;
 `
 
 const DimmerCloseBtn = ({ handleClick }) => {

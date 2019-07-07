@@ -55,6 +55,7 @@ const Panels = () => {
                         parentHeight={height}
                         parentX={x}
                         parentY={y} 
+                        bg={panel.bg}
                     />
                 ))
             }

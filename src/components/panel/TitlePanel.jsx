@@ -14,10 +14,14 @@ const TitlePanelStyle = styled.h3`
     left: ${props => props.index === -1 ? props.normalX/2 : props.expandX/2}px;
     top: ${props => props.index === -1 ? props.y/2 : 10}px;
     transform: translate(-50%, ${props => props.index === -1 ? -50 : 0}%);
-    transition: top ${props => props.transitionDuration}ms ${props => props.index === -1 ? 300 : 0}ms ease, left ${props => props.transitionDuration}ms ease;
+    transition: top ${props => props.transitionDuration}ms ${props => props.index === -1 ? 300 : 0}ms ease, left ${props => props.transitionDuration}ms ease, background-color 500ms ease;
     box-shadow: 2px 5px 5px rgba(0, 0, 0, .7);
     position: absolute;
     display: inline;
+
+    &:hover {
+        background-color: #aaa;
+    }
 
     & > i {
         margin-right: 20px;

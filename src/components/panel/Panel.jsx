@@ -40,7 +40,8 @@ const PanelStyle = styled.div`
     display: flex;
     position: absolute;
     padding: 5px;
-    background-image: linear-gradient(45deg, #C9D6FF, #E2E2E2);
+    background: linear-gradient(45deg, rgba(201, 214, 255, ${props => props.index !== -1 ? .92 : .8}), rgba(226, 226, 226, ${props => props.index !== -1 ? .92 : .8})), url(${props => props.bg});
+    background-size: cover;
     border: 1px solid rgba(0, 0, 0, .4);
     border-radius: 10px;
     width: ${props => props.width}px;
@@ -49,7 +50,7 @@ const PanelStyle = styled.div`
     justify-content: center;
     overflow: hidden;
     
-    transition: width ${props => props.transitionDuration}ms ease, height ${props => props.transitionDuration}ms ease, transform ${props => props.transitionDuration}ms ease, align-items ${props => props.transitionDuration}ms ease;
+    transition: width ${props => props.transitionDuration}ms ease, height ${props => props.transitionDuration}ms ease, transform ${props => props.transitionDuration}ms ease, background ${props => props.transitionDuration}ms ease;
 
     & > section {
       padding: 0px 20px 5px 20px;
@@ -85,8 +86,9 @@ const ChoosePanel = ({name}) => {
   }
 }
 
-const Panel = ({ title, currentIndex, index, setIndex, parentWidth, parentHeight, parentX, parentY, icon }) => {
+const Panel = ({ title, currentIndex, index, setIndex, parentWidth, parentHeight, parentX, parentY, icon, bg }) => {
   const transitionDuration = 600
+
   const itemRef = React.useRef()
 
   const [defaultWidth, setDefaultWidth] = React.useState()
@@ -132,6 +134,7 @@ const Panel = ({ title, currentIndex, index, setIndex, parentWidth, parentHeight
       index={currentIndex}
       contentDisplay={contentDisplay}
       contentWidth={parentWidth}
+      bg={bg}
     >
       <div>
         <TitlePanel 
