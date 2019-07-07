@@ -9,7 +9,7 @@ const ItemContent = styled.div`
   display: flex;
   flex-wrap: wrap;
   border-radius: 5px;
-  background-color: white;
+  justify-content: space-around;
 `
 
 const ItemTitle = styled.h3`
@@ -22,8 +22,7 @@ const ItemTitle = styled.h3`
 const ItemStyle = styled.li`
   width: 100%;
   height: auto;
-  border-bottom: 5px solid #ccc;
-  padding: 5px;
+  padding: 0 5px;
   z-index: 1;
 `
 

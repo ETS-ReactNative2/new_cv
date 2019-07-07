@@ -26,6 +26,24 @@ const TitlePanelStyle = styled.h3`
 const TitlePanel = ({ handleClick, icon, title, index, parentWidth, itemWidth, itemHeight, transitionDuration }) => {
     const iconRef = useRef()
     const textRef = useRef()
+
+    const [typed, setTyped] = useState("")
+
+    const runTyped = index => {
+        let interval = setInterval(() => {
+            let tab = Array.from(title)
+            setTyped(prevTyped => `${prevTyped}${tab[index]}`)
+            index++
+            if (index === tab.length) {
+                clearInterval(interval)
+            }
+        }, 200)
+    }
+
+    useEffect(() => {
+        let index = 0
+        runTyped(index)
+    }, [])
     
     return (
         <TitlePanelStyle 
@@ -37,7 +55,7 @@ const TitlePanel = ({ handleClick, icon, title, index, parentWidth, itemWidth, i
             transitionDuration={transitionDuration}
         >
             <i ref={iconRef} className={`fas fa-${icon}`}></i>
-            <span ref={textRef}>{title}</span>
+            <span ref={textRef}>{typed}</span>
         </TitlePanelStyle>
   )
 }

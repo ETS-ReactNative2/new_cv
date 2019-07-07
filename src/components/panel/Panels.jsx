@@ -5,21 +5,21 @@ import panels from '../../utils/panels'
 import Panel from './Panel';
 
 const PanelsStyle = styled.div`
-  width: 700px;
-  min-height: 600px;
-  display: grid;
-  grid-template-columns: repeat(2, 50%);
-  grid-template-rows: repeat(2, 50%);
-  position: relative;
-  justify-content: center;
-  padding: 0;
-  margin: 0;
-
-  @media ${devices['mobileL']} {
-    width: 100%;
+    width: 700px;
+    min-height: 600px;
+    display: grid;
     grid-template-columns: repeat(2, 50%);
-    border: 1px solid red;
-  }
+    grid-template-rows: repeat(2, 50%);
+    position: relative;
+    justify-content: center;
+    padding: 0;
+    margin: 0;
+
+    @media ${devices['mobileL']} {
+        width: 100%;
+        grid-template-columns: repeat(2, 50%);
+        border: 1px solid red;
+    }
 `
 
 const Panels = () => {

@@ -5,8 +5,10 @@
   font-family: 'DM Sans', sans-serif;
 }
 
-html, body, #root {
+ul {list-style: none;}
 
+html, body, #root {
+  background-image: linear-gradient(45deg, #667db6, #0082c8, #0082c8, #667db6);
   width: 100%;
   height: 100%;
   padding: 0;

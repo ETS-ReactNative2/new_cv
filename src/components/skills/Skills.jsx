@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import Skill from './Skill';
+import skills from '../../utils/skills'
 
 const ListStyle = styled.ul`
   list-style: none;
@@ -16,11 +17,11 @@ const ListStyle = styled.ul`
   }
 `
 
-const Skills = ({ items }) => {
+const Skills = () => {
     return (
         <ListStyle>
             {
-                items.length > 0 && items.map((skill, i) => (
+                skills.length > 0 && skills.map((skill, i) => (
                     <Skill key={i} item={skill} index={i} />
                 ))
             }

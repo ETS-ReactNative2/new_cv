@@ -2,7 +2,8 @@ import React from 'react'
 import styled from 'styled-components'
 import TitlePanel from './TitlePanel';
 import Skills from '../skills/Skills';
-import skills from '../../utils/skills'
+import ListItem from '../professionnal/Experiences';
+import AboutList from '../about/AboutList';
 
 const PanelStyle = styled.div`
   position: relative;
@@ -33,12 +34,12 @@ const PanelStyle = styled.div`
   }
 
   & > div {
-    box-shadow: 2px 2px 4px rgba(0, 0, 0, .8);
+    box-shadow: 4px 4px 7px rgba(0, 0, 0, .8);
     display: flex;
     position: absolute;
     padding: 5px;
-    background-color: #abbaab;
-    border: 1px solid;
+    background-image: linear-gradient(45deg, #C9D6FF, #E2E2E2);
+    border: 1px solid rgba(0, 0, 0, .4);
     border-radius: 10px;
     width: ${props => props.width}px;
     height: ${props => props.height}px;
@@ -62,8 +63,14 @@ const PanelStyle = styled.div`
 const ChoosePanel = ({name}) => {
   switch (name) {
     case 'Skills':
-      return <Skills items={skills} />
-
+      return <Skills />
+      
+    case 'Professionnal':
+      return <ListItem />
+      
+    case 'About Me':
+      return <AboutList />
+      
     default:
       return (
         <p>
