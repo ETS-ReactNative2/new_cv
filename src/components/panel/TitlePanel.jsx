@@ -11,10 +11,11 @@ const TitlePanelStyle = styled.h3`
     padding: 0 5px;
     height: 30px;
     width: 80%;
-    left: ${props => props.index === -1 ? props.normalX/2 : props.expandX/2}px;
-    top: ${props => props.index === -1 ? props.y/2 : 10}px;
-    transform: translate(-50%, ${props => props.index === -1 ? -50 : 0}%);
-    transition: top ${props => props.transitionDuration}ms ${props => props.index === -1 ? 300 : 0}ms ease, left ${props => props.transitionDuration}ms ease, background-color 500ms ease;
+    background-color: ${props => props.color};
+    left: ${props => props.index !== props.currentIndex ? props.normalX/2 : props.expandX/2}px;
+    top: ${props => props.index !== props.currentIndex ? props.y/2 : 10}px;
+    transform: translate(-50%, ${props => props.index !== props.currentIndex ? -50 : 0}%);
+    transition: top ${props => props.transitionDuration}ms ${props => props.currentIndex === -1 ? 300 : 0}ms ease, left ${props => props.transitionDuration}ms ease, background-color 500ms ease;
     box-shadow: 2px 5px 5px rgba(0, 0, 0, .7);
     position: absolute;
     display: inline;
@@ -34,7 +35,7 @@ const TitlePanelStyle = styled.h3`
     }
 `
 
-const TitlePanel = ({ handleClick, icon, title, index, parentWidth, itemWidth, itemHeight, transitionDuration }) => {
+const TitlePanel = ({ handleClick, icon, title, color, index, currentIndex, parentWidth, itemWidth, itemHeight, transitionDuration }) => {
     const iconRef = useRef()
     const textRef = useRef()
 
@@ -60,10 +61,12 @@ const TitlePanel = ({ handleClick, icon, title, index, parentWidth, itemWidth, i
         <TitlePanelStyle 
             onClick={handleClick}
             index={index}
+            currentIndex={currentIndex}
             normalX={+itemWidth}
             expandX={+parentWidth}
             y={+itemHeight}
             transitionDuration={transitionDuration}
+            color={color}
         >
             <i ref={iconRef} className={`fas fa-${icon}`}></i>
             <span ref={textRef}>{typed}</span>

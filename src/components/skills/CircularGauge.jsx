@@ -44,13 +44,6 @@ const CircularGaugeStyle = styled.div`
 
     & .value { 
         font-size: 28px; 
-        -webkit-touch-callout: none;
-        -webkit-user-select: none;
-        -khtml-user-select: none;
-        -moz-user-select: none;
-        -ms-user-select: none;
-        user-select: none;
-        outline-style:none;
     }
   }
 

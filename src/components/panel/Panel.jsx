@@ -40,7 +40,7 @@ const PanelStyle = styled.div`
     display: flex;
     position: absolute;
     padding: 5px;
-    background: linear-gradient(45deg, rgba(201, 214, 255, ${props => props.index !== -1 ? .92 : .8}), rgba(226, 226, 226, ${props => props.index !== -1 ? .92 : .8})), url(${props => props.bg});
+    background: linear-gradient(45deg, rgba(201, 214, 255, ${props => props.index !== -1 ? .85 : .4}), rgba(226, 226, 226, ${props => props.index !== -1 ? .85 : .4})), url(${props => props.bg});
     background-size: cover;
     border: 1px solid rgba(0, 0, 0, .4);
     border-radius: 10px;
@@ -50,7 +50,7 @@ const PanelStyle = styled.div`
     justify-content: center;
     overflow: hidden;
     
-    transition: width ${props => props.transitionDuration}ms ease, height ${props => props.transitionDuration}ms ease, transform ${props => props.transitionDuration}ms ease, background ${props => props.transitionDuration}ms ease;
+    transition: width ${props => props.transitionDuration}ms ease, height ${props => props.transitionDuration}ms ease, transform ${props => props.transitionDuration}ms ease, background-image ${props => props.transitionDuration}ms ease;
 
     & > section {
       padding: 0px 20px 5px 20px;
@@ -86,11 +86,13 @@ const ChoosePanel = ({name}) => {
   }
 }
 
-const Panel = ({ title, currentIndex, index, setIndex, parentWidth, parentHeight, parentX, parentY, icon, bg }) => {
+const Panel = ({ panel, index, parentWidth, parentHeight }) => {
   const transitionDuration = 600
+  const { title, bg, color, icon } = panel
 
   const itemRef = React.useRef()
 
+  const [currentIndex, setIndex] = React.useState(-1)
   const [defaultWidth, setDefaultWidth] = React.useState()
   const [defaultHeight, setDefaultHeight] = React.useState()
   const [defaultX, setDefaultX] = React.useState()
@@ -110,21 +112,22 @@ const Panel = ({ title, currentIndex, index, setIndex, parentWidth, parentHeight
   }
 
   const handleClick = () => {
-      setIndex(currentIndex === index ? -1 : index)
-      expandBlock()
+    setIndex(currentIndex === index ? -1 : index)
+    expandBlock()
   }
 
   React.useEffect(() => {
-      if (itemRef) {
-          setDefaultWidth(itemRef.current.getBoundingClientRect().width)
-          setWidth(itemRef.current.getBoundingClientRect().width)
-          setDefaultHeight(itemRef.current.getBoundingClientRect().height)
-          setHeight(itemRef.current.getBoundingClientRect().height)
-      }
+    if (itemRef) {
+      setDefaultWidth(itemRef.current.getBoundingClientRect().width)
+      setWidth(itemRef.current.getBoundingClientRect().width)
+      setDefaultHeight(itemRef.current.getBoundingClientRect().height)
+      setHeight(itemRef.current.getBoundingClientRect().height)
+    }
   }, [])
 
   return (
     <PanelStyle
+      id={index}
       ref={itemRef}
       transitionDuration={transitionDuration}
       width={width}
@@ -142,11 +145,13 @@ const Panel = ({ title, currentIndex, index, setIndex, parentWidth, parentHeight
           icon={icon} 
           title={title} 
           transitionDuration={transitionDuration}
-          index={currentIndex}
+          index={index}
+          currentIndex={currentIndex}
           parentWidth={parentWidth}
           parentHeight={parentHeight}
           itemWidth={defaultWidth}
           itemHeight={defaultHeight}
+          color={color}
         />
         <section>
           <ChoosePanel name={title} />

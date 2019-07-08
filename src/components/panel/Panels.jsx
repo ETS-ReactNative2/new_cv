@@ -25,7 +25,6 @@ const PanelsStyle = styled.div`
 const Panels = () => {
     const appRef = useRef()
 
-    const [currentIndex, setIndex] = useState(-1)
     const [width, setWidth] = useState()
     const [height, setHeight] = useState()
     const [x, setX] = useState()
@@ -47,15 +46,9 @@ const Panels = () => {
                     <Panel
                         key={i}
                         index={i}
-                        icon={panel.icon}
-                        currentIndex={currentIndex}
-                        setIndex={setIndex}
-                        title={panel.title}
                         parentWidth={width}
                         parentHeight={height}
-                        parentX={x}
-                        parentY={y} 
-                        bg={panel.bg}
+                        panel={panel}
                     />
                 ))
             }
