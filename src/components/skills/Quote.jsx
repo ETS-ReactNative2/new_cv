@@ -5,7 +5,7 @@ import { usePanelValues } from '../../context/panelContext';
 
 const QuoteStyle = styled.div`
   box-sizing: border-box;
-  width: 99%;
+  width: 98%;
   min-height: 100px;
   position: absolute;
   padding: 5px 10px;
@@ -13,7 +13,8 @@ const QuoteStyle = styled.div`
   border-radius: 10px;
   overflow: auto;
   color: white;
-  bottom: 5px;
+  bottom: 20px;
+  margin: 0 1%;
 
   & > span {    
     position: absolute;
@@ -21,6 +22,14 @@ const QuoteStyle = styled.div`
     font-style: oblique;
     transform: translateX(${props => props.x}%);
     transition: transform ${props => props.slideDuration}ms ease, opacity ${props => props.slideDuration}ms ease-out;
+  }
+
+  @media ${devices.desktop} {
+    width: 90%;
+    bottom: 50px;
+    font-size: 1.2em;
+    min-height: 300px;
+    margin: 0 5%;
   }
 
   @media ${devices.mobileL} {

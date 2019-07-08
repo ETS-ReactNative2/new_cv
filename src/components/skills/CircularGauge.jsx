@@ -53,6 +53,16 @@ const CircularGaugeStyle = styled.div`
     transition: font-size 900ms ease;
   }
 
+    @media ${devices.desktop} {
+        margin: 0 50px;
+        padding: 70px;
+
+        & .circle {            
+            transform: scale(1.7);
+            margin-bottom: 20px;
+        }
+    }
+
   @media ${devices.tablet} {
     transform: scale(.7);
     margin: 0 15px;
