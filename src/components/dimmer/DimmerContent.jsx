@@ -1,10 +1,20 @@
 import React, { useRef, useState } from 'react'
 import styled from 'styled-components'
-import Quote from '../skills/Quote';
-import CircularGauge from '../skills/CircularGauge';
-import DimmerCloseBtn from './DimmerCloseBtn';
-import { SET_NAME, MINIMIZE } from '../../reducer/panelReducer';
-import { usePanelValues } from '../../context/panelContext';
+import Quote from '../skills/Quote'
+import CircularGauge from '../skills/CircularGauge'
+import DimmerCloseBtn from './DimmerCloseBtn'
+import { SET_NAME, MINIMIZE } from '../../reducer/panelReducer'
+import { usePanelValues } from '../../context/panelContext'
+
+const TooltipStyle = styled.span`
+    position: absolute;
+    top: -5%;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 5px;
+    color: white;
+    border: 2px solid darkgreen;
+`
 
 const ItemContentShadow = styled.div`
   width: ${props => props.expand ? '80%' : props.width + 'px'};
@@ -24,6 +34,14 @@ const ItemContentShadow = styled.div`
     flex-wrap: wrap;
   } 
 `
+
+const Tooltip = () => {
+    return (
+        <TooltipStyle>
+            Click on a circular and read my thougth about this technology
+        </TooltipStyle>
+    )
+}
 
 const DimmerContent = () => {
     const itemContentShadowRef = useRef()
@@ -53,6 +71,7 @@ const DimmerContent = () => {
             expand={expand}
         >
             <div>
+                <Tooltip />
                 {
                     expand && <DimmerCloseBtn handleClick={handleClose} />
                 }
