@@ -11,7 +11,7 @@ const moveCarKeyframe = keyframes`
         }
 
         25% {
-            transform: translateX(100px);
+            transform: translateX(${window.screen.width > 1440 ? 100 : 500}px);
         }
 
         50% {
@@ -19,7 +19,7 @@ const moveCarKeyframe = keyframes`
         }
 
         75% {
-            transform: translateX(-100px);
+            transform: translateX(-${window.screen.width > 1440 ? 100 : 500}px);
         }
 
         90% {
@@ -40,7 +40,7 @@ const stopCarKeyframe = keyframes`
     }
 `
 
-const ListItemStyle = styled.div`
+const ListItemStyle = styled.ul`
     padding: 0;
     display: block;
     width: 100%;
@@ -90,7 +90,7 @@ const ListItemStyle = styled.div`
     #birthday {
         display: flex;
         & > div {
-            transform: translateX(0px);
+            transform: translateX(${props => props.iconBdayIndex === 0 ? 0 : -50 * props.iconBdayIndex}px);
             display: flex;
             align-items: center;
             width: auto;
@@ -116,6 +116,35 @@ const ListItemStyle = styled.div`
     #icon-car {
         animation: ${props => props.keyframe} ${props => props.animationCarDuration}ms ease infinite;
     }
+
+    @media ${devices.desktop} { 
+        .item {
+            padding: 50px 0px;
+            font-size: 1.5em;
+        }
+
+        .icon {
+            width: 100px;
+            height: 100px;
+            line-height: 100px;
+        }
+        
+        #user, #birthday {
+            width: 100px;
+        }
+
+        #user > div {  
+            transform: translateY(-100px);
+        }
+
+        #birthday > div {
+            transform: translateX(${props => props.iconBdayIndex === 0 ? 0 : -100 * props.iconBdayIndex}px);
+
+            & > i {
+                width: 100px;
+            }
+        }
+    }
 `
 
 const AboutList = () => {
@@ -136,13 +165,13 @@ const AboutList = () => {
     const animateUser = isUserAnimate => {
         if (userContentRef) {
             userContentRef.current.style.transition = `transform ${iconDuration}ms`
-            userContentRef.current.style.transform = `translateY(${isUserAnimate ? 0 : -50}px)`
+            userContentRef.current.style.transform = `translateY(${isUserAnimate ? 0 : (window.screen.width < 2400 ? -50 : -100)}px)`
         }
     }
 
     const animateBdayIcon = index => {
         iconBdayRef.current.style.transition = `transform ${iconDuration}ms`
-        iconBdayRef.current.style.transform = `translateX(${index === 0 ? 0 : -50 * index}px)`
+        // iconBdayRef.current.style.transform = `translateX(${index === 0 ? 0 : -50 * index}px)`
     }
 
     const animateSvg = isHomeSvgAnimate => {
@@ -181,7 +210,11 @@ const AboutList = () => {
     useEffect(() => moveCar(isCarMoving), [isCarMoving])
 
     return (
-        <ListItemStyle keyframe={keyframe} animationCarDuration={animationDuration}>
+        <ListItemStyle 
+            iconBdayIndex={iconBdayIndex} 
+            keyframe={keyframe} 
+            animationCarDuration={animationDuration}
+        >
             <li className='item'>
                 <span id='user' onClick={toogle.userAnimate} className='icon'>
                     <div ref={userContentRef}>
