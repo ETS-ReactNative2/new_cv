@@ -86,13 +86,12 @@ const ChoosePanel = ({name}) => {
   }
 }
 
-const Panel = ({ panel, index, parentWidth, parentHeight }) => {
+const Panel = ({ panel, index, currentIndex, setIndex, parentWidth, parentHeight }) => {
   const transitionDuration = 600
   const { title, bg, color, icon } = panel
 
   const itemRef = React.useRef()
 
-  const [currentIndex, setIndex] = React.useState(-1)
   const [defaultWidth, setDefaultWidth] = React.useState()
   const [defaultHeight, setDefaultHeight] = React.useState()
   const [defaultX, setDefaultX] = React.useState()

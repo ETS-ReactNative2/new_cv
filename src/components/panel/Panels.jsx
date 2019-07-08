@@ -8,12 +8,14 @@ const PanelsStyle = styled.div`
     width: 700px;
     height: 100%;
     display: grid;
-    grid-template-columns: repeat(2, 50%);
-    grid-template-rows: repeat(2, 50%);
+    grid-template-columns: repeat(2, 49%);
+    grid-template-rows: repeat(2, 49%);
+    grid-gap: 2%;
     position: relative;
     justify-content: center;
     padding: 0;
     margin: 0;
+    z-index: 2;
 
     @media ${devices['mobileL']} {
         width: 100%;
@@ -25,6 +27,8 @@ const PanelsStyle = styled.div`
 const Panels = () => {
     const appRef = useRef()
 
+
+    const [currentIndex, setIndex] = useState(-1)
     const [width, setWidth] = useState()
     const [height, setHeight] = useState()
     const [x, setX] = useState()
@@ -49,6 +53,8 @@ const Panels = () => {
                         parentWidth={width}
                         parentHeight={height}
                         panel={panel}
+                        currentIndex={currentIndex}
+                        setIndex={setIndex}
                     />
                 ))
             }
