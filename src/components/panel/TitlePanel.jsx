@@ -19,27 +19,37 @@ const TitlePanelStyle = styled.h3`
     box-shadow: 2px 5px 5px rgba(0, 0, 0, .7);
     position: absolute;
     display: inline;
+    overflow: hidden;
 
     &:hover {
         background-color: #aaa;
     }
 
-    & > i {
+    & > .title-icon {
+        width: 1em;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
         margin-right: 20px;
+        transform: translateY(${props => props.iconY}%);
+        transition: transform ${props => props.transitionDuration}ms ${props => props.currentIndex === -1 ? 300 : 0}ms ease;
+        position: absolute;
+
+        & > i { padding: 5px 0px; }
     }
 
     @media ${devices.mobileL} { 
         font-size: .8em; 
         line-height: 30px;
-        & > i { margin-right: 10px; }
+        & > .title-icon { margin-right: 10px; }
     }
 `
 
 const TitlePanel = ({ handleClick, icon, title, color, index, currentIndex, parentWidth, itemWidth, itemHeight, transitionDuration }) => {
-    const iconRef = useRef()
-    const textRef = useRef()
+    const iconTitleRef = useRef()
 
     const [typed, setTyped] = useState("")
+    const [iconY, setIconY] = useState(0)
 
     const runTyped = index => {
         let interval = setInterval(() => {
@@ -56,6 +66,11 @@ const TitlePanel = ({ handleClick, icon, title, color, index, currentIndex, pare
         let index = 0
         runTyped(index)
     }, [])
+
+    useEffect(() => {
+        if (iconTitleRef)
+            setIconY(currentIndex === index ? -50 : 0)
+    }, [currentIndex])
     
     return (
         <TitlePanelStyle 
@@ -67,9 +82,13 @@ const TitlePanel = ({ handleClick, icon, title, color, index, currentIndex, pare
             y={+itemHeight}
             transitionDuration={transitionDuration}
             color={color}
+            iconY={iconY}
         >
-            <i ref={iconRef} className={`fas fa-${icon}`}></i>
-            <span ref={textRef}>{typed}</span>
+            <span ref={iconTitleRef} className='title-icon'>
+                <i className={`fas fa-${icon}`}></i>
+                <i className={`fas fa-arrow-left`}></i>
+            </span>
+            <span className='title-text'>{typed}</span>
         </TitlePanelStyle>
   )
 }
