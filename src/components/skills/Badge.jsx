@@ -1,9 +1,10 @@
 import React from 'react'
 import styled from 'styled-components'
+import devices from '../../utils/devices'
 
 const BadgeStyle = styled.span`
   height: 25px;
-  min-width: 70px;
+  width: 70px;
   background-color: cadetblue;
   margin: 0 10px 10px;
   padding: 3px 5px;
@@ -11,6 +12,14 @@ const BadgeStyle = styled.span`
   overflow: hidden;
   border-radius: 10px;
   box-shadow: 3px 2px 4px rgba(0, 0, 0, .4);
+
+  @media ${devices.desktop} {
+    width: 170px;
+    height: 40px;
+    border-radius: 15px;
+    margin: 20px;
+    padding: 10px 15px;
+  }
 `
 
 const BadgeName = styled.span`
@@ -29,6 +38,10 @@ const BadgeName = styled.span`
   & span {
     text-align: center;
   }
+
+    @media ${devices.desktop} {
+        top: ${props => props.isShowed ? -50 : 50}%;
+    }
 `
 
 const BadgeValue = styled.span`
