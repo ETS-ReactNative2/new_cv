@@ -23,7 +23,7 @@ const DropStyle = styled.span`
 `
 
 const AppStyle = styled.div`
-  background-image: linear-gradient(45deg, #0F2027, #203A43, #2C5364);
+  background-image: linear-gradient(45deg, rgba(15, 32, 39, 0.7), rgba(32, 58, 67, 0.7), rgba(44, 83, 100, 0.7)), url(stars_bg.gif);
   width: 100%;
   height: 100%;
   overflow: hidden;
@@ -68,7 +68,7 @@ const App = () => {
           <Dimmer />
         </AppStyle>
       </PanelProvider>
-      <Drops />
+      {/* <Drops /> */}
     </React.Fragment>
   );
 }
