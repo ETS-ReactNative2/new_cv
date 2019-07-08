@@ -19,11 +19,11 @@ const DropStyle = styled.span`
   width: 1px;
   height: 50px;
   // background-image: linear-gradient(top, #C9D6FF, #E2E2E2);
-  background-color: rgba(226, 226, 226, .3);
+  background-color: rgba(226, 226, 226, .15);
 `
 
 const AppStyle = styled.div`
-  background-image: linear-gradient(45deg, #667db6, #0082c8, #0082c8, #667db6);
+  background-image: linear-gradient(45deg, #0F2027, #203A43, #2C5364);
   width: 100%;
   height: 100%;
   overflow: hidden;
@@ -34,7 +34,7 @@ const AppStyle = styled.div`
 `
 
 const Drops = () => {
-  const nbDrop = 2500
+  const nbDrop = 1000
 
   const [drops, setDrop] = React.useState([])
 
