@@ -5,6 +5,7 @@ import Skills from '../skills/Skills';
 import ListItem from '../professionnal/Experiences';
 import AboutList from '../about/AboutList';
 import SchoolingList from '../schooling/SchoolingList';
+import devices from '../../utils/devices';
 
 const PanelStyle = styled.div`
   position: relative;
@@ -59,6 +60,11 @@ const PanelStyle = styled.div`
       width: ${props => props.contentWidth}px;
       transform: translateX(${props => props.contentDisplay ? 0 : -100}%);
       transition: transform ${props => props.transitionDuration}ms ${props => props.index === -1 ? 0 : 300}ms ease;
+
+      @media ${devices.desktop} {
+        padding: 50px 100px;
+        margin-top: 80px;
+      }
     }
   }
 `

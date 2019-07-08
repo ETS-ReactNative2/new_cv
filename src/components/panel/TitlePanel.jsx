@@ -9,7 +9,7 @@ const TitlePanelStyle = styled.h3`
     border-right: 4px solid rgba(0, 0, 0, .8);
     margin: 0;
     padding: 0 5px;
-    height: 30px;
+    height: 50px;
     width: 80%;
     background-color: ${props => props.color};
     left: ${props => props.index !== props.currentIndex ? props.normalX/2 : props.expandX/2}px;

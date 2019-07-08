@@ -50,6 +50,14 @@ const ExperienceStyle = styled.li`
     }
   }
 
+  @media ${devices.desktop} {
+    padding: 20px 0 80px;
+
+    & .item-description {
+      padding-bottom: 80px;
+    }
+  }
+
   @media ${devices.mobileL} {
     font-size: .7em;
   }
