@@ -5,6 +5,7 @@ import CircularGauge from '../skills/CircularGauge'
 import DimmerCloseBtn from './DimmerCloseBtn'
 import { SET_NAME, MINIMIZE } from '../../reducer/panelReducer'
 import { usePanelValues } from '../../context/panelContext'
+import devices from '../../utils/devices';
 
 const TooltipStyle = styled.span`
     position: absolute;
@@ -26,6 +27,10 @@ const ItemContentShadow = styled.div`
   background-color: ${props => props.expand ? '#29323c' : 'white'};
   position: absolute;
   transition: width ${props => props.expandDuration}ms ease-in, height ${props => props.expandDuration}ms ease-in, left ${props => props.expandDuration}ms ease-in, top ${props => props.expandDuration}ms ease-in, background-color ${props => props.expandDuration}ms ease-in;
+
+    @media ${devices.mobileL} {
+        height: ${props => props.expand ? '98%' : props.height + 'px'};
+    }
 
   & > div {
     overflow-y: auto;

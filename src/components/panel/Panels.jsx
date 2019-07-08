@@ -19,8 +19,12 @@ const PanelsStyle = styled.div`
 
     @media ${devices['mobileL']} {
         width: 100%;
-        height: 600px;
+        height: 100%;
         margin: 10% 0;
+    }
+
+    @media ${devices['desktop']} {
+        width: 60%;
     }
 `
 

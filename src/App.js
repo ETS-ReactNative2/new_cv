@@ -6,6 +6,7 @@ import Panels from './components/panel/Panels';
 import Dimmer from './components/dimmer/Dimmer';
 import { PanelProvider } from './context/panelContext'
 import panelReducer from './reducer/panelReducer'
+import devices from './utils/devices';
 
 const rise = keyframes`
   to { top: -1000px; }
@@ -31,6 +32,14 @@ const AppStyle = styled.div`
   margin: 0;
   display: flex;
   justify-content: center;
+
+  @media ${devices.laptop} {
+    font-size: 1em;
+  }
+
+  @media ${devices.desktop} {
+    font-size: 2em;
+  }
 `
 
 const Drops = () => {
