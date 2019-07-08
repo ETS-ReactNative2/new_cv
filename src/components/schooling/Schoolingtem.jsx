@@ -31,6 +31,16 @@ const SchoolingItemStyle = styled.li`
   @media ${devices.mobileL} {
     font-size: .7em;
   }
+
+  @media ${devices.desktop} {
+    font-size: 1.2em;
+    height: 100px;
+
+    & .item-header {
+      height: 100px;
+      line-height: 100px;
+    }
+  }
 `
 
 const SchoolingItem = ({ item }) => {
