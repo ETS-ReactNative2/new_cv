@@ -1,9 +1,25 @@
 import React from 'react'
-import styled from 'styled-components'
-import Badge from './Badge';
+import styled, { keyframes } from 'styled-components'
+import Badge from './Badge'
 import { usePanelValues } from '../../context/panelContext';
-import { EXPAND, SET_NAME, SET_WIDTH, SET_HEIGHT, SET_X, SET_Y, SET_ITEM } from '../../reducer/panelReducer';
-import devices from '../../utils/devices';
+import { EXPAND, SET_NAME, SET_WIDTH, SET_HEIGHT, SET_X, SET_Y, SET_ITEM } from '../../reducer/panelReducer'
+import devices from '../../utils/devices'
+
+const arrowToLeft = keyframes`
+    50% { opacity: 1; }
+    100% {
+        opacity: 0;
+        transform: translateX(10px);
+    }
+`
+
+const arrowToRight = keyframes`
+    50% { opacity: 1; }
+    100% {
+        opacity: 0;
+        transform: translateX(-10px);
+    }
+`
 
 const ItemContent = styled.div`
   padding: 5px;
@@ -18,6 +34,38 @@ const ItemTitle = styled.h3`
   padding: 0px;
   cursor: pointer;
   text-shadow: 2px 3px 7px rgba(0, 0, 0, .3);
+  transition: color 600ms ease, background-color 600ms ease;
+
+  &:hover {
+    color: white;
+    background-color: #2c3e50;
+  }
+
+  & > span:nth-child(2) { padding: 0 35px; }
+
+  & > .left-icon {
+    font-size: .8em;
+
+    & > i:nth-child(1) {
+        animation: ${arrowToLeft} 1000ms ease-in infinite;
+    }
+
+    & > i:nth-child(2) {
+        animation: ${arrowToLeft} 1000ms 100ms ease-in infinite;
+    }
+  }
+
+  & > .right-icon {
+    font-size: .8em;
+
+    & > i:nth-child(1) {
+        animation: ${arrowToRight} 1000ms ease-in infinite;
+    }
+
+    & > i:nth-child(2) {
+        animation: ${arrowToRight} 1000ms 100ms ease-in infinite;
+    }
+  }
 `
 
 const ItemStyle = styled.li`
@@ -58,7 +106,17 @@ const Skill = ({ item, index }) => {
 
     return (
         <ItemStyle>
-            <ItemTitle onClick={() => handleClick(item)}>{item.title}</ItemTitle>
+            <ItemTitle onClick={() => handleClick(item)}>
+                <span className='left-icon'>
+                    <i className='fas fa-chevron-right'></i>
+                    <i className='fas fa-chevron-right'></i>
+                </span>
+                <span>{item.title}</span>
+                <span className='right-icon'>
+                    <i className='fas fa-chevron-left'></i>
+                    <i className='fas fa-chevron-left'></i>
+                </span>
+            </ItemTitle>
             <ItemContent
                 ref={itemContentRef}>
                 {

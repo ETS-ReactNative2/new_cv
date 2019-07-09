@@ -25,7 +25,9 @@ const Skills = () => {
     return (
         <React.Fragment>
             <HelperNote>
-                In list below, click on one line's title to display modal
+                In list below, click on one line's title to display modal.
+                <br />
+                Click on each pill to display skill value
             </HelperNote>
             <ListStyle>
                 {
