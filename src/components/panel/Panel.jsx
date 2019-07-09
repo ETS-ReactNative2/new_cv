@@ -49,7 +49,7 @@ const PanelStyle = styled.div`
     height: ${props => props.height}px;
     transform: translate(${props => props.x}px, ${props => props.y}px);
     justify-content: center;
-    overflow: hidden;
+    overflow: auto;
     
     transition: width ${props => props.transitionDuration}ms ease, height ${props => props.transitionDuration}ms ease, transform ${props => props.transitionDuration}ms ease, background-image ${props => props.transitionDuration}ms ease;
 
@@ -65,6 +65,12 @@ const PanelStyle = styled.div`
         padding: 50px 100px;
         margin-top: 80px;
       }
+    }
+  }
+
+  @media ${devices.mobileL} {
+    & > div {
+      transform: translate(${props => props.index === -1 ? props.x : props.x + 5}px, ${props => props.y}px);
     }
   }
 `

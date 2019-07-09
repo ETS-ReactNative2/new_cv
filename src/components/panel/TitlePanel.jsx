@@ -48,8 +48,9 @@ const TitlePanelStyle = styled.h3`
     }
 
     @media ${devices.mobileL} { 
+        height: 20px;
         font-size: .8em; 
-        line-height: 30px;
+        line-height: 20px;
         & > .title-icon { margin-right: 10px; }
     }
 `

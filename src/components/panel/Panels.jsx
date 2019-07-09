@@ -18,9 +18,9 @@ const PanelsStyle = styled.div`
     z-index: 2;
 
     @media ${devices['mobileL']} {
-        width: 100%;
-        height: 100%;
-        margin: 10% 0;
+        width: 98%;
+        height: 80%;
+        margin: 10% 1%;
     }
 
     @media ${devices['desktop']} {

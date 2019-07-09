@@ -1,6 +1,7 @@
 import React from 'react'
 import ReactMarkdown from 'react-markdown'
 import styled from 'styled-components'
+import devices from '../../utils/devices';
 
 const intro = `### Hi, Welcome to my interactive resume  
 My name is <span>Believe LODY</span>, I am a web developper based in France. I am a Front End developper but I would rather say that I am a Javascript developper. Indeed, I used to work with tools around Javascript world.  
@@ -11,26 +12,30 @@ I keep in touch new stuff here in web development universe. I improve my skills 
 `
 
 const IntroStyle = styled.div`
-    border-left: 2px solid #2c3e50;
-    padding-left: 10px;
-    font-style: oblique;
-    font-size: .9em;
-    box-shadow: 2px 2px 5px rgba(0, 0, 0, .4);
+  border-left: 2px solid #2c3e50;
+  padding-left: 10px;
+  font-style: oblique;
+  font-size: .9em;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, .4);
 
-    a { 
-        color: #e74c3c; 
-        text-decoration: none;
-    }
-    
-    span { 
-        background-color: #2980b9;
-        color: white;
-        border-radius: 10px;
-        padding: 2px 5px;
-        font-style: normal;
-        font-weight: bold;
-        box-shadow: 2px 2px 5px rgba(0, 0, 0, .4);
-    }
+  a { 
+      color: #e74c3c; 
+      text-decoration: none;
+  }
+  
+  span { 
+      background-color: #2980b9;
+      color: white;
+      border-radius: 10px;
+      padding: 2px 5px;
+      font-style: normal;
+      font-weight: bold;
+      box-shadow: 2px 2px 5px rgba(0, 0, 0, .4);
+  }
+
+  @media ${devices.mobileL} {
+    font-size: .8em;
+  }
 `
 
 const Introduction = () => {
