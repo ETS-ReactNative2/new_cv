@@ -40,7 +40,7 @@ const PanelStyle = styled.div`
     box-shadow: 4px 4px 7px rgba(0, 0, 0, .8);
     display: flex;
     position: absolute;
-    padding: 5px;
+    padding: 10px 5px 5px;
     background: linear-gradient(45deg, rgba(201, 214, 255, ${props => props.index !== -1 ? .85 : .4}), rgba(226, 226, 226, ${props => props.index !== -1 ? .85 : .4})), url(${props => props.bg});
     background-size: cover;
     border: 1px solid rgba(0, 0, 0, .4);

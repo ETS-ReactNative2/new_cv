@@ -6,7 +6,7 @@ import { usePanelValues } from '../../context/panelContext';
 const QuoteStyle = styled.div`
   box-sizing: border-box;
   width: 98%;
-  min-height: 100px;
+  min-height: 300px;
   position: absolute;
   padding: 5px 10px;
   border: 1px solid rgba(255, 255, 255, .7);
@@ -14,7 +14,7 @@ const QuoteStyle = styled.div`
   overflow: auto;
   color: white;
   bottom: 20px;
-  margin: 0 1%;
+  margin: 0% .5%;
 
   & > span {    
     position: absolute;
@@ -26,14 +26,16 @@ const QuoteStyle = styled.div`
 
   @media ${devices.desktop} {
     width: 90%;
-    bottom: 50px;
+    bottom: 70px;
     font-size: 1.2em;
-    min-height: 300px;
+    min-height: 500px;
     margin: 0 5%;
   }
 
   @media ${devices.mobileL} {
+    min-height: 500px;
     font-size: .7em;
+    bottom: 20px;
   }
 `
 

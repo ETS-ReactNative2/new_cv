@@ -16,6 +16,7 @@ const ItemTitle = styled.h3`
   margin-top: 5px;
   padding: 0px;
   cursor: pointer;
+  text-shadow: 2px 3px 7px rgba(0, 0, 0, .3);
 `
 
 const ItemStyle = styled.li`
@@ -23,8 +24,7 @@ const ItemStyle = styled.li`
   height: auto;
   padding: 0 5px;
   z-index: 1;
-  border-bottom: 2px solid;
-  &:first-child { border-top: 2px solid; }
+  border-bottom: 2px solid rgba(0, 0, 0, .2);
   &:last-child { border-bottom: none; }
 `
 

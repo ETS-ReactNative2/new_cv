@@ -38,6 +38,10 @@ const TitlePanelStyle = styled.h3`
         & > i { padding: 5px 0px; }
     }
 
+    & > .title-text {
+        text-shadow: 2px 3px 7px rgba(0, 0, 0, .5);
+    }
+
     @media ${devices.desktop} {
         height: 50px;
         line-height: 50px;
