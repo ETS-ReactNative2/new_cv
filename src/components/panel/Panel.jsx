@@ -49,7 +49,8 @@ const PanelStyle = styled.div`
     height: ${props => props.height}px;
     transform: translate(${props => props.x}px, ${props => props.y}px);
     justify-content: center;
-    overflow: auto;
+    overflow-y: auto;
+    overflow-x: hidden;
     
     transition: width ${props => props.transitionDuration}ms ease, height ${props => props.transitionDuration}ms ease, transform ${props => props.transitionDuration}ms ease, background-image ${props => props.transitionDuration}ms ease;
 

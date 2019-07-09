@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import Badge from './Badge';
 import { usePanelValues } from '../../context/panelContext';
 import { EXPAND, SET_NAME, SET_WIDTH, SET_HEIGHT, SET_X, SET_Y, SET_ITEM } from '../../reducer/panelReducer';
+import devices from '../../utils/devices';
 
 const ItemContent = styled.div`
   padding: 5px;
@@ -26,6 +27,10 @@ const ItemStyle = styled.li`
   z-index: 1;
   border-bottom: 2px solid rgba(0, 0, 0, .2);
   &:last-child { border-bottom: none; }
+
+  @media ${devices.mobileL} {
+      font-size: .8em;
+  }
 `
 
 const Skill = ({ item, index }) => {

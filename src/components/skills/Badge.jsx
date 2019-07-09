@@ -10,7 +10,7 @@ const BadgeStyle = styled.span`
   padding: 3px 5px;
   position: relative;
   overflow: hidden;
-  border-radius: 10px;
+  border-radius: 8px;
   box-shadow: 3px 2px 4px rgba(0, 0, 0, .4);
 
   @media ${devices.desktop} {
@@ -19,6 +19,12 @@ const BadgeStyle = styled.span`
     border-radius: 15px;
     margin: 20px;
     padding: 10px 15px;
+  }
+
+  @media ${devices.mobileL} {
+      height: 15px;
+      padding: 0 5px;
+      border-radius: 4px;
   }
 `
 
@@ -37,6 +43,10 @@ const BadgeName = styled.span`
 
   & span {
     text-align: center;
+  }
+
+  @media ${devices.mobileL} {
+      top: ${props => props.isShowed ? -70 : 40}%;
   }
 
     @media ${devices.desktop} {
