@@ -8,9 +8,9 @@ const PanelsStyle = styled.div`
     width: 700px;
     height: 100%;
     display: grid;
-    grid-template-columns: repeat(2, 49%);
-    grid-template-rows: repeat(2, 49%);
-    grid-gap: 2%;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    grid-gap: 5px;
     position: relative;
     justify-content: center;
     padding: 0;

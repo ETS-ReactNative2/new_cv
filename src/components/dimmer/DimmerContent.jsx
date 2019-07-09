@@ -9,12 +9,17 @@ import devices from '../../utils/devices';
 
 const TooltipStyle = styled.span`
     position: absolute;
-    top: -5%;
+    top: -8%;
     left: 50%;
     transform: translateX(-50%);
     border-radius: 5px;
     color: white;
     border: 2px solid darkgreen;
+
+    @media ${devices.mobileL} {
+        top: -1%;
+        font-size: .6em;
+    }
 `
 
 const ItemContentShadow = styled.div`
@@ -28,16 +33,27 @@ const ItemContentShadow = styled.div`
   position: absolute;
   transition: width ${props => props.expandDuration}ms ease-in, height ${props => props.expandDuration}ms ease-in, left ${props => props.expandDuration}ms ease-in, top ${props => props.expandDuration}ms ease-in, background-color ${props => props.expandDuration}ms ease-in;
 
-    @media ${devices.mobileL} {
-        height: ${props => props.expand ? '98%' : props.height + 'px'};
-    }
-
   & > div {
     overflow-y: auto;
     padding: 5px;
     display: flex;
     flex-wrap: wrap;
+    justify-center: space-around;
+  }  
+  
+  @media ${devices.desktop} {
+    & > div {
+        padding-top: 50px;
+    }
+  }
+  
+  @media ${devices.mobileL} {
+    height: ${props => props.expand ? '98%' : props.height + 'px'};
   } 
+
+  @media ${devices.mobileM} {
+    & > div { padding: 0; }
+  }
 `
 
 const Tooltip = () => {

@@ -6,7 +6,7 @@ import { usePanelValues } from '../../context/panelContext';
 const QuoteStyle = styled.div`
   box-sizing: border-box;
   width: 98%;
-  min-height: 300px;
+  min-height: 200px;
   position: absolute;
   padding: 5px 10px;
   border: 1px solid rgba(255, 255, 255, .7);
@@ -33,7 +33,7 @@ const QuoteStyle = styled.div`
   }
 
   @media ${devices.mobileL} {
-    min-height: 500px;
+    min-height: 300px;
     font-size: .7em;
     bottom: 20px;
   }

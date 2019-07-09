@@ -55,7 +55,7 @@ const CircularGaugeStyle = styled.div`
 
     @media ${devices.desktop} {
         margin: 0 50px;
-        padding: 70px;
+        padding: 24px;
 
         & .circle {            
             transform: scale(1.7);

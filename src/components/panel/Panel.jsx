@@ -71,7 +71,6 @@ const PanelStyle = styled.div`
 
   @media ${devices.mobileL} {
     & > div {
-      transform: translate(${props => props.index === -1 ? props.x : props.x + 5}px, ${props => props.y}px);
     }
   }
 `
@@ -118,8 +117,8 @@ const Panel = ({ panel, index, currentIndex, setIndex, parentWidth, parentHeight
   const expandBlock = () => {
     setWidth(index !== currentIndex ? parentWidth : defaultWidth)
     setHeight(index !== currentIndex ? parentHeight : defaultHeight)
-    setX(index !== currentIndex ? (index === 1 || index === 3 ? -width - 15 : 0) : defaultX)
-    setY(index !== currentIndex ? (index === 2 || index === 3 ? -height - 15 : 0) : defaultY)
+    setX(index !== currentIndex ? (index === 1 || index === 3 ? -width - 5 : 0) : defaultX)
+    setY(index !== currentIndex ? (index === 2 || index === 3 ? -height - 5 : 0) : defaultY)
     setContentDisplay(index !== currentIndex ? true : false)
   }
 
