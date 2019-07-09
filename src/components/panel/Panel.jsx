@@ -3,8 +3,8 @@ import styled from 'styled-components'
 import TitlePanel from './TitlePanel';
 import Skills from '../skills/Skills';
 import ListItem from '../professionnal/Experiences';
-import AboutList from '../about/AboutList';
 import SchoolingList from '../schooling/SchoolingList';
+import About from '../about/About';
 import devices from '../../utils/devices';
 
 const PanelStyle = styled.div`
@@ -78,7 +78,7 @@ const ChoosePanel = ({name}) => {
       return <ListItem />
       
     case 'About Me':
-      return <AboutList />
+      return <About />
     
     case 'Schooling':
       return <SchoolingList />

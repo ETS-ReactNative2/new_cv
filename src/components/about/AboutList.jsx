@@ -44,9 +44,16 @@ const ListItemStyle = styled.ul`
     padding: 0;
     display: block;
     width: 100%;
-    margin-top: 50px;
-    border-radius: 2px;
-    border: 2px solid rgba(0, 0, 0, .6);
+    margin-top: 20px;
+    border-radius: 5px;
+    border: 1px solid rgba(0, 0, 0, .2);
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, .4);
+    // background-color: white;
+
+    a { 
+        text-decoration: none;
+        color: black;
+    }
 
     @media ${devices.mobileL} { 
         .content {font-size: .8em; }
@@ -67,6 +74,7 @@ const ListItemStyle = styled.ul`
         text-align: center;
         line-height: 50px;
         position: relative;
+        cursor: pointer;
     }
 
     .user-text {
@@ -227,9 +235,9 @@ const AboutList = () => {
                 </span>
             </li>
             <li className='item'>
-                <span className='icon'>
+                <a className='icon' href='mailto:believelody@gmail.com'>
                     <i className='fas fa-at'></i>
-                </span>
+                </a>
                 <span className='content'>believelody@gmail.com</span>
             </li>
             <li className='item'>
