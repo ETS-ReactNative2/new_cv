@@ -32,7 +32,7 @@ const Skills = () => {
             <ListStyle>
                 {
                     skills.length > 0 && skills.map((skill, i) => (
-                        <Skill key={i} item={skill} index={i} />
+                        <Skill key={i} itemSelected={skill} index={i} />
                     ))
                 }
             </ListStyle>

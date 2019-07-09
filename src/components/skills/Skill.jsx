@@ -81,24 +81,24 @@ const ItemStyle = styled.li`
   }
 `
 
-const Skill = ({ item, index }) => {
+const Skill = ({ itemSelected, index }) => {
     const itemContentRef = React.useRef(null)
 
-    const [{expand}, dispatch] = usePanelValues()
+    const [{expand, item}, dispatch] = usePanelValues()
 
     const handleClick = item => {
-        dispatch({ type: EXPAND })
-        dispatch({ type: SET_ITEM, payload: item })
+        dispatch({ type: SET_ITEM, payload: { ...item, index } })
     }
 
     React.useEffect(() => {
-        if (itemContentRef) {
+        if (itemContentRef && item && item.index === index) {
+            dispatch({ type: EXPAND })
             dispatch({ type: SET_WIDTH, payload: itemContentRef.current.getBoundingClientRect().width })
             dispatch({ type: SET_HEIGHT, payload: itemContentRef.current.getBoundingClientRect().height })
             dispatch({ type: SET_X, payload: itemContentRef.current.getBoundingClientRect().x })
             dispatch({ type: SET_Y, payload: itemContentRef.current.getBoundingClientRect().y })
         }
-    }, [])
+    }, [item])
 
     React.useEffect(() => {
         if (!expand) dispatch({ type: SET_NAME, selectedName: '' })
@@ -106,12 +106,12 @@ const Skill = ({ item, index }) => {
 
     return (
         <ItemStyle>
-            <ItemTitle onClick={() => handleClick(item)}>
+            <ItemTitle onClick={() => handleClick(itemSelected)}>
                 <span className='left-icon'>
                     <i className='fas fa-chevron-right'></i>
                     <i className='fas fa-chevron-right'></i>
                 </span>
-                <span>{item.title}</span>
+                <span>{itemSelected.title}</span>
                 <span className='right-icon'>
                     <i className='fas fa-chevron-left'></i>
                     <i className='fas fa-chevron-left'></i>
@@ -120,7 +120,7 @@ const Skill = ({ item, index }) => {
             <ItemContent
                 ref={itemContentRef}>
                 {
-                    item.skills.map(skill => (
+                    itemSelected.skills.map(skill => (
                         <Badge key={skill.name} obj={skill} />
                     ))
                 }

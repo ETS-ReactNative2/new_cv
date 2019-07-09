@@ -19,6 +19,8 @@ const TooltipStyle = styled.span`
     @media ${devices.mobileL} {
         top: -1%;
         font-size: .6em;
+
+        @media (orientation: landscape) {visibility: hidden;}
     }
 `
 
@@ -38,7 +40,11 @@ const ItemContentShadow = styled.div`
     padding: 5px;
     display: flex;
     flex-wrap: wrap;
-    justify-center: space-around;
+    justify-content: space-around;
+
+    & .no-landscape {
+        visibility: hidden;
+    }
   }  
   
   @media ${devices.desktop} {
@@ -48,7 +54,20 @@ const ItemContentShadow = styled.div`
   }
   
   @media ${devices.mobileL} {
+    width: ${props => props.expand ? '98%' : props.width + 'px'};
     height: ${props => props.expand ? '98%' : props.height + 'px'};
+
+    & > div {
+        @media (orientation: landscape) {
+            & .no-landscape {
+                visibility: visible;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+            }
+        }
+    }
   } 
 
   @media ${devices.mobileM} {
@@ -69,7 +88,7 @@ const DimmerContent = () => {
 
     const [isQuoteDisplayed, setQuoteDisplay] = useState(false)
 
-    const [{ item, panelWidth, panelHeight, panelX, panelY, expand, expandDuration, currentIndex }, dispatch] = usePanelValues()
+    const [{ item, panelWidth, panelHeight, panelX, panelY, expand, expandDuration }, dispatch] = usePanelValues()
 
     const displayQuote = (name, index) => {
         setQuoteDisplay(name ? true : false)
@@ -81,13 +100,15 @@ const DimmerContent = () => {
         dispatch({ type: MINIMIZE })
     }
 
+    console.log(panelX, panelY)
+
     return (
         <ItemContentShadow
             ref={itemContentShadowRef}
             width={panelWidth}
             height={panelHeight}
-            left={panelX}
-            top={panelY}
+            left={panelX !== 0 && panelX}
+            top={panelY !== 0 && panelY}
             expandDuration={expandDuration}
             expand={expand}
         >
@@ -113,6 +134,9 @@ const DimmerContent = () => {
                         skills={item.skills}
                     />
                 }
+                <span className='no-landscape'>
+                    Modal is not displayed in landscape oriantation for mobile
+                </span>
             </div>
         </ItemContentShadow>
     )

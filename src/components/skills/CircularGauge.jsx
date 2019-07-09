@@ -71,6 +71,8 @@ const CircularGaugeStyle = styled.div`
   @media ${devices.mobileL} {
     transform: scale(.5);
     margin: 0;
+
+    @media (orientation: landscape) {visibility: hidden;}
   }
 `
 
@@ -104,6 +106,7 @@ const CircularGauge = ({ skill, displayQuote, index }) => {
     const increaseValue = () => {
         increaseInterval = setInterval(() => {
             if (value === percent) {
+                setValue(percent)
                 clearInterval(increaseInterval)
             }
             else setValue(v => v + 1)

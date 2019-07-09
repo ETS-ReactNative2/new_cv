@@ -36,6 +36,8 @@ const QuoteStyle = styled.div`
     min-height: 300px;
     font-size: .7em;
     bottom: 20px;
+
+    @media (orientation: landscape) {visibility: hidden;}
   }
 `
 

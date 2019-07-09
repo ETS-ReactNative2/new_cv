@@ -7,6 +7,7 @@ import Dimmer from './components/dimmer/Dimmer';
 import { PanelProvider } from './context/panelContext'
 import panelReducer from './reducer/panelReducer'
 import devices from './utils/devices';
+import SidenoteBtn from './components/sidenotes/SidenoteBtn';
 
 const rise = keyframes`
   to { top: -1000px; }
@@ -75,6 +76,7 @@ const App = () => {
         <AppStyle>
           <Panels />
           <Dimmer />
+          <SidenoteBtn />
         </AppStyle>
       </PanelProvider>
       {/* <Drops /> */}
