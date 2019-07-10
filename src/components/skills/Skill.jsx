@@ -1,25 +1,10 @@
 import React from 'react'
-import styled, { keyframes } from 'styled-components'
+import styled from 'styled-components'
 import Badge from './Badge'
 import { usePanelValues } from '../../context/panelContext';
 import { EXPAND, SET_NAME, SET_WIDTH, SET_HEIGHT, SET_X, SET_Y, SET_ITEM } from '../../reducer/panelReducer'
 import devices from '../../utils/devices'
-
-const arrowToLeft = keyframes`
-    50% { opacity: 1; }
-    100% {
-        opacity: 0;
-        transform: translateX(10px);
-    }
-`
-
-const arrowToRight = keyframes`
-    50% { opacity: 1; }
-    100% {
-        opacity: 0;
-        transform: translateX(-10px);
-    }
-`
+import { arrowToLeft, arrowToRight } from '../../utils/arrowKeyframes';
 
 const ItemContent = styled.div`
   padding: 5px;
