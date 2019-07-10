@@ -49,10 +49,10 @@ const PanelStyle = styled.div`
     height: ${props => props.height}px;
     transform: translate(${props => props.x}px, ${props => props.y}px);
     justify-content: center;
-    overflow-y: auto;
     overflow-x: hidden;
+    overflow-y: ${props => props.index !== -1 ? 'auto' : 'hidden'};
     
-    transition: width ${props => props.transitionDuration}ms ease, height ${props => props.transitionDuration}ms ease, transform ${props => props.transitionDuration}ms ease, background-image ${props => props.transitionDuration}ms ease;
+    transition: width ${props => props.transitionDuration}ms ease, height ${props => props.transitionDuration}ms ease, transform ${props => props.transitionDuration}ms ease, background-image ${props => props.transitionDuration}ms ease, overflow-y ${props => props.transitionDuration}ms ease;
 
     & > section {
       padding: 0px 20px 5px 20px;
