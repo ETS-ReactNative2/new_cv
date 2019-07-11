@@ -33,7 +33,8 @@ const BtnStyle = styled.div`
     position: absolute;
     justify-items: center;
     transform: translateX(
-      ${props => (props.isHold ? (props.x < props.threshold ? 25 : -50) : 75)}px
+      ${props =>
+        props.isHold ? (props.x < props.threshold ? 12.5 : -25) : 37.5}%
     );
     transition: transform ${props => props.duration}ms ease;
     margin: 0;
@@ -41,13 +42,13 @@ const BtnStyle = styled.div`
 
     & > section {
       width: 100px;
-      border: 1px solid green;
+      /* border: 1px solid green; */
       display: grid;
       grid-template-columns: repeat(2, 50%);
 
       & > span {
         text-align: center;
-        border: 1px solid yellow;
+        /* border: 1px solid yellow; */
       }
 
       & .second {
@@ -73,7 +74,7 @@ const BtnStyle = styled.div`
     & > span {
       text-align: center;
       width: 100px;
-      border: 1px solid blue;
+      /* border: 1px solid blue; */
     }
   }
 `;
@@ -98,7 +99,7 @@ const SidenoteBtn = () => {
     if (btnX < THRESHOLD && isHold) {
       setBtnX(x);
     } else if (isHold) {
-      setBtnX(screenWidth / 2 + btnRef.current.getBoundingClientRect().width);
+      setBtnX(screenWidth / 2);
       dispatch({ type: SET_COMPONENT, payload: "sidenote" });
     }
   };
