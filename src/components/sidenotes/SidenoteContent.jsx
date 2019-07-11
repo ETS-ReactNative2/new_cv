@@ -6,14 +6,15 @@ import Tooltip from '../tooltip/Tooltip';
 import DimmerCloseBtn from '../dimmer/DimmerCloseBtn';
 
 const ContentStyle = styled.div`
+  opacity: ${props => props.expand && props.name === 'sidenote' ? 1 : 0};
     border: 2px solid white;
-    width: ${props => props.expand ? '80%' : '0px'};
-    height: ${props => props.expand ? '80%' : '0px'};
+    width: ${props => props.expand && props.name === 'sidenote' ? '80%' : '0px'};
+    height: ${props => props.expand && props.name === 'sidenote' ? '80%' : '0px'};
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     position: absolute;
-    transition: width ${props => props.expandDuration}ms ease-in, height ${props => props.expandDuration}ms ease-in;
+    transition: width ${props => props.expandDuration}ms ease-in, height ${props => props.expandDuration}ms ease-in, opacity ${props => props.expandDuration}ms ease-in;
 
     & > div {
         width: 100%;
@@ -22,15 +23,19 @@ const ContentStyle = styled.div`
 `
 
 const SidenoteContent = () => {
-    const [{ expand, expandDuration }, dispatch] = usePanelValues()
+    const [{ expand, expandDuration, componentName }, dispatch] = usePanelValues()
 
     const handleClose = () => dispatch({ type: MINIMIZE })
 
   return (
-      <ContentStyle expand={expand} expandDuration={expandDuration}>
+    <ContentStyle 
+      expand={expand} 
+      expandDuration={expandDuration} 
+      name={componentName}
+    >
       <div>
           <Tooltip>
-            Yes we can
+            Here I note some bugs I notice during project's development
           </Tooltip>
           <DimmerCloseBtn handleClick={handleClose} />
       </div>

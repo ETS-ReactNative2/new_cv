@@ -25,6 +25,7 @@ const BtnStyle = styled.div`
     overflow: hidden;
     transform:  scale(${props => props.isHold ? 1.3 : 1});
     transition: transform ${props => props.duration}ms ease, right ${props => props.x < 150 ? 0 : props.duration * 3}ms ease;
+    z-index: 100;
 
     & > section {
         position: absolute;
@@ -76,7 +77,7 @@ const SidenoteBtn = () => {
         }
         else if (isHold) {
             setBtnX(screenWidth + 20)
-            dispatch({ type: SET_COMPONENT, payload: 'sidenotes' })
+            dispatch({ type: SET_COMPONENT, payload: 'sidenote' })
         }
     }
 
@@ -100,6 +101,9 @@ const SidenoteBtn = () => {
             onMouseDown={() => handleMouseClick(true)} 
             onMouseUp={() => handleMouseClick(false)}
             onMouseMove={moveBtn}
+            onTouchStart={() => handleMouseClick(true)} 
+            onTouchEnd={() => handleMouseClick(false)}
+            onTouchMove={moveBtn}
             isHold={isHold}
             x={btnX}
             duration={duration}

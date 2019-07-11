@@ -9,15 +9,16 @@ import { usePanelValues } from '../../context/panelContext'
 import devices from '../../utils/devices'
 
 const ItemContentShadow = styled.div`
-  width: ${props => props.expand ? '80%' : props.width + 'px'};
-  height: ${props => props.expand ? '80%' : props.height + 'px'};
-  left: ${props => props.expand ? '50%' : props.left + 'px'};
-  top: ${props => props.expand ? '50%' : props.top + 'px'};
+  opacity: ${props => props.expand && props.name === 'modal' ? 1 : 0};
+  width: ${props => props.expand && props.name === 'modal' ? '80%' : props.width + 'px'};
+  height: ${props => props.expand && props.name === 'modal' ? '80%' : props.height + 'px'};
+  left: ${props => props.expand && props.name === 'modal' ? '50%' : props.left + 'px'};
+  top: ${props => props.expand && props.name === 'modal' ? '50%' : props.top + 'px'};
   transform: translate(-50%, -50%);
   border-radius: 5px;
-  background-color: ${props => props.expand ? '#29323c' : 'white'};
+  background-color: ${props => props.expand && props.name === 'modal' ? '#29323c' : 'white'};
   position: absolute;
-  transition: width ${props => props.expandDuration}ms ease-in, height ${props => props.expandDuration}ms ease-in, left ${props => props.expandDuration}ms ease-in, top ${props => props.expandDuration}ms ease-in, background-color ${props => props.expandDuration}ms ease-in;
+  transition: width ${props => props.expandDuration}ms ease-in, height ${props => props.expandDuration}ms ease-in, left ${props => props.expandDuration}ms ease-in, top ${props => props.expandDuration}ms ease-in, background-color ${props => props.expandDuration}ms ease-in, opacity ${props => props.expandDuration}ms ease-in;
 
   & > div {
     overflow-y: auto;
@@ -38,8 +39,8 @@ const ItemContentShadow = styled.div`
   }
   
   @media ${devices.mobileL} {
-    width: ${props => props.expand ? '98%' : props.width + 'px'};
-    height: ${props => props.expand ? '98%' : props.height + 'px'};
+    width: ${props => props.expand && props.name === 'modal' ? '98%' : props.width + 'px'};
+    height: ${props => props.expand && props.name === 'modal' ? '98%' : props.height + 'px'};
 
     & > div {
         @media (orientation: landscape) {
@@ -64,7 +65,7 @@ const DimmerContent = () => {
 
     const [isQuoteDisplayed, setQuoteDisplay] = useState(false)
 
-    const [{ item, panelWidth, panelHeight, panelX, panelY, expand, expandDuration }, dispatch] = usePanelValues()
+    const [{ item, panelWidth, panelHeight, panelX, panelY, expand, expandDuration, componentName }, dispatch] = usePanelValues()
 
     const displayQuote = (name, index) => {
         setQuoteDisplay(name ? true : false)
@@ -85,6 +86,7 @@ const DimmerContent = () => {
             top={panelY !== 0 && panelY}
             expandDuration={expandDuration}
             expand={expand}
+            name={componentName}
         >
             <div>
                 <Tooltip>

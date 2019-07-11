@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import DimmerContent from './DimmerContent';
+import SidenoteContent from '../sidenotes/SidenoteContent'
 import { usePanelValues } from '../../context/panelContext';
 
 const ItemDimmer = styled.div`
@@ -16,7 +17,7 @@ const ItemDimmer = styled.div`
   z-index: ${props => props.expand ? 99 : -1};
 `
 
-const Dimmer = ({ children }) => {
+const Dimmer = () => {
     const [{expandDuration, expand}, _] = usePanelValues()
 
     return (
@@ -24,7 +25,8 @@ const Dimmer = ({ children }) => {
             expandDuration={expandDuration}
             expand={expand}
         >
-            { children }   
+            <DimmerContent />
+            <SidenoteContent /> 
         </ItemDimmer>
     )
 }

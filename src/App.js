@@ -3,10 +3,9 @@ import Helmet from 'react-helmet'
 import styled, { keyframes } from 'styled-components'
 import './App.css';
 import Panels from './components/panel/Panels';
+import Dimmer from './components/dimmer/Dimmer';
 import SidenoteBtn from './components/sidenotes/SidenoteBtn';
-import Sidenotes from './components/sidenotes/Sidenotes';
 import { usePanelValues } from './context/panelContext'
-import Modal from './components/modal/Modal';
 import devices from './utils/devices';
 
 const rise = keyframes`
@@ -88,12 +87,7 @@ const App = () => {
       />
         <AppStyle>
           <Panels />
-          {
-            componentName === 'modal' && <Modal />
-          }
-          {
-            componentName === 'sidenotes' && <Sidenotes />
-          }
+          <Dimmer />
           <SidenoteBtn />
         </AppStyle>
       {/* <Drops /> */}
