@@ -9,7 +9,8 @@ export const initialState = {
     panelHeight: 0,
     selectedName: '',
     currentIndex: -1,
-    item: null
+    item: null,
+    componentName: ''
 }
 
 export const PanelContext = createContext()

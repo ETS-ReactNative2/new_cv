@@ -1,6 +1,8 @@
 import React, { useRef, useEffect, useState } from 'react'
 import styled, { keyframes } from 'styled-components'
 import { arrowToRight } from '../../utils/arrowKeyframes'
+import { usePanelValues } from '../../context/panelContext';
+import { EXPAND, SET_COMPONENT } from '../../reducer/panelReducer';
 
 const slideBtn = keyframes`
     to { right: 110vw; }
@@ -63,12 +65,19 @@ const SidenoteBtn = () => {
 
     const [isHold, setHold] = useState(false)
     const [btnX, setBtnX] = useState(X_POS)
+    
+    const [{expand}, dispatch] = usePanelValues()
 
     const moveBtn = e => {
         let screenWidth = window.screen.width
         let x = screenWidth - e.nativeEvent.clientX - btnRef.current.getBoundingClientRect().width - X_POS
-        if (btnX < 150 && isHold) setBtnX(x)
-        else if (isHold) setBtnX(screenWidth + 20)
+        if (btnX < 150 && isHold) {
+            setBtnX(x)
+        }
+        else if (isHold) {
+            setBtnX(screenWidth + 20)
+            dispatch({ type: SET_COMPONENT, payload: 'sidenotes' })
+        }
     }
 
     const resetMoveBtn = () => setBtnX(X_POS)
@@ -77,6 +86,13 @@ const SidenoteBtn = () => {
         if (btnX < 150) setHold(isHold)
         if (!isHold) resetMoveBtn()
     }
+
+    useEffect(() => {
+        if (!expand) {
+            setHold(false)
+            resetMoveBtn()
+        }
+    }, [expand])
 
     return (
         <BtnStyle 

@@ -3,11 +3,11 @@ import Helmet from 'react-helmet'
 import styled, { keyframes } from 'styled-components'
 import './App.css';
 import Panels from './components/panel/Panels';
-import Dimmer from './components/dimmer/Dimmer';
-import { PanelProvider } from './context/panelContext'
-import panelReducer from './reducer/panelReducer'
-import devices from './utils/devices';
 import SidenoteBtn from './components/sidenotes/SidenoteBtn';
+import Sidenotes from './components/sidenotes/Sidenotes';
+import { usePanelValues } from './context/panelContext'
+import Modal from './components/modal/Modal';
+import devices from './utils/devices';
 
 const rise = keyframes`
   to { top: -1000px; }
@@ -58,7 +58,21 @@ const Drops = () => {
   return drops
 }
 
+// const RenderDimmerComponent = ({ component }) => {
+//   switch (component) {
+//     case 'modal':
+//       return <Modal />
+
+//     case 'sidenotes':
+//       return <Sidenotes />
+  
+//     default:
+//       return <div></div>
+//   }
+// }
+
 const App = () => {
+  const [{ componentName }, _] = usePanelValues()
 
   return (
     <React.Fragment>
@@ -72,13 +86,16 @@ const App = () => {
           { 'rel': 'stylesheet', 'href': 'https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css' }
         ]}
       />
-      <PanelProvider reducer={panelReducer}>
         <AppStyle>
           <Panels />
-          <Dimmer />
+          {
+            componentName === 'modal' && <Modal />
+          }
+          {
+            componentName === 'sidenotes' && <Sidenotes />
+          }
           <SidenoteBtn />
         </AppStyle>
-      </PanelProvider>
       {/* <Drops /> */}
     </React.Fragment>
   );

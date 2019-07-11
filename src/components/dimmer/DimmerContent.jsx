@@ -3,26 +3,10 @@ import styled from 'styled-components'
 import Quote from '../skills/Quote'
 import CircularGauge from '../skills/CircularGauge'
 import DimmerCloseBtn from './DimmerCloseBtn'
+import Tooltip from '../tooltip/Tooltip';
 import { SET_NAME, MINIMIZE } from '../../reducer/panelReducer'
 import { usePanelValues } from '../../context/panelContext'
-import devices from '../../utils/devices';
-
-const TooltipStyle = styled.span`
-    position: absolute;
-    top: -8%;
-    left: 50%;
-    transform: translateX(-50%);
-    border-radius: 5px;
-    color: white;
-    border: 2px solid darkgreen;
-
-    @media ${devices.mobileL} {
-        top: -1%;
-        font-size: .6em;
-
-        @media (orientation: landscape) {visibility: hidden;}
-    }
-`
+import devices from '../../utils/devices'
 
 const ItemContentShadow = styled.div`
   width: ${props => props.expand ? '80%' : props.width + 'px'};
@@ -75,14 +59,6 @@ const ItemContentShadow = styled.div`
   }
 `
 
-const Tooltip = () => {
-    return (
-        <TooltipStyle>
-            Click on a circular and read my thougth about this technology
-        </TooltipStyle>
-    )
-}
-
 const DimmerContent = () => {
     const itemContentShadowRef = useRef()
 
@@ -100,8 +76,6 @@ const DimmerContent = () => {
         dispatch({ type: MINIMIZE })
     }
 
-    console.log(panelX, panelY)
-
     return (
         <ItemContentShadow
             ref={itemContentShadowRef}
@@ -113,10 +87,10 @@ const DimmerContent = () => {
             expand={expand}
         >
             <div>
-                <Tooltip />
-                {
-                    expand && <DimmerCloseBtn handleClick={handleClose} />
-                }
+                <Tooltip>
+                    Click on a circular and read my thougth about this technology
+                </Tooltip>
+                <DimmerCloseBtn handleClick={handleClose} />
                 {
                     item && item.skills.map((skill, i) => (
                         <CircularGauge

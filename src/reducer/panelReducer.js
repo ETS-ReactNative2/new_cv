@@ -1,5 +1,3 @@
-import React, { useReducer } from 'react'
-
 export const EXPAND = 'EXPAND'
 export const MINIMIZE = 'MINIMIZE'
 export const EXPAND_DURATION = 'EXPAND_DURATION'
@@ -10,6 +8,7 @@ export const SET_HEIGHT = 'SET_HEIGHT'
 export const SET_NAME = 'SET_NAME'
 export const SET_ITEM = 'SET_ITEM'
 export const SET_INDEX = 'SET_INDEX'
+export const SET_COMPONENT = 'SET_COMPONENT'
 
 export default (state, { type, payload }) => {
     switch (type) {
@@ -17,7 +16,7 @@ export default (state, { type, payload }) => {
             return { ...state, expand: true }
 
         case MINIMIZE:
-            return { ...state, expand: false }
+            return { ...state, expand: false, componentName: '' }
 
         case SET_X:
             return { ...state, panelX: payload }
@@ -39,6 +38,9 @@ export default (state, { type, payload }) => {
 
         case SET_INDEX:
             return { ...state, currentIndex: payload }
+
+        case SET_COMPONENT:
+            return { ...state, componentName: payload, expand: true }
     
         default:
             return state

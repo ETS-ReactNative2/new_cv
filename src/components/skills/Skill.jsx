@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import Badge from './Badge'
 import { usePanelValues } from '../../context/panelContext';
-import { EXPAND, SET_NAME, SET_WIDTH, SET_HEIGHT, SET_X, SET_Y, SET_ITEM } from '../../reducer/panelReducer'
+import { EXPAND, SET_NAME, SET_WIDTH, SET_HEIGHT, SET_X, SET_Y, SET_ITEM, SET_COMPONENT } from '../../reducer/panelReducer'
 import devices from '../../utils/devices'
 import { arrowToLeft, arrowToRight } from '../../utils/arrowKeyframes';
 
@@ -77,7 +77,7 @@ const Skill = ({ itemSelected, index }) => {
 
     React.useEffect(() => {
         if (itemContentRef && item && item.index === index) {
-            dispatch({ type: EXPAND })
+            dispatch({ type: SET_COMPONENT, payload: 'modal' })
             dispatch({ type: SET_WIDTH, payload: itemContentRef.current.getBoundingClientRect().width })
             dispatch({ type: SET_HEIGHT, payload: itemContentRef.current.getBoundingClientRect().height })
             dispatch({ type: SET_X, payload: itemContentRef.current.getBoundingClientRect().x })

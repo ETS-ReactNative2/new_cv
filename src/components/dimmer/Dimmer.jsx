@@ -16,7 +16,7 @@ const ItemDimmer = styled.div`
   z-index: ${props => props.expand ? 99 : -1};
 `
 
-const Dimmer = () => {
+const Dimmer = ({ children }) => {
     const [{expandDuration, expand}, _] = usePanelValues()
 
     return (
@@ -24,7 +24,7 @@ const Dimmer = () => {
             expandDuration={expandDuration}
             expand={expand}
         >
-            <DimmerContent />    
+            { children }   
         </ItemDimmer>
     )
 }
