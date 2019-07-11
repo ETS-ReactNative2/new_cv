@@ -4,7 +4,6 @@ import styled from "styled-components";
 
 const SidenoteLineStyle = styled.li`
   background-color: #cd201f;
-  border: 1px solid white;
   border-radius: 3px;
   padding: 5px;
   margin: 0;
@@ -13,15 +12,16 @@ const SidenoteLineStyle = styled.li`
   height: 100%;
   width: 100%;
   position: relative;
+  overflow: hidden;
 
-  & > i {
+  & i {
     margin: 0 10px 0 0;
   }
 
-  & > span {
-    border: 1px solid green;
-    position: relative;
-    width: 300px;
+  & span {
+    background-color: green;
+    width: 500px;
+    height: 100px;
   }
 `;
 
