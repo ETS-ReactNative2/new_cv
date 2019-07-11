@@ -83,7 +83,6 @@ const SidenoteBtn = () => {
     if (btnX < THRESHOLD && isHold) {
       setBtnX(x);
     } else if (isHold) {
-      alert(btnX);
       setBtnX(screenWidth + 20);
       dispatch({ type: SET_COMPONENT, payload: "sidenote" });
     }
