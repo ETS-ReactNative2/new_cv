@@ -8,9 +8,8 @@ const SidenoteLineStyle = styled.li`
   padding: 5px;
   margin: 0;
   color: white;
+  height: 200px;
   font-size: 12px;
-  height: 100%;
-  width: 100%;
   position: relative;
   overflow: hidden;
 

@@ -126,9 +126,9 @@ const Experience = ({ item, index, currentIndex, setIndex }) => {
         <span className="item-title">{item.title}</span>
         <span className="item-date">{item.date}</span>
       </div>
-      <div ref={itemContentRef} className="item-description">
+      <span ref={itemContentRef} className="item-description">
         <ReactMarkdown escapeHtml={false} source={item.description} />
-      </div>
+      </span>
     </ExperienceStyle>
   );
 };
