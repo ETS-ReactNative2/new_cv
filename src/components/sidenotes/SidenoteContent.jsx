@@ -4,12 +4,13 @@ import { usePanelValues } from "../../context/panelContext";
 import { MINIMIZE } from "../../reducer/panelReducer";
 import Tooltip from "../tooltip/Tooltip";
 import DimmerCloseBtn from "../dimmer/DimmerCloseBtn";
+import Sidenotes from "./Sidenotes";
 
 const ContentStyle = styled.div`
   opacity: ${props => (props.expand && props.name === "sidenote" ? 1 : 0)};
   border: 2px solid white;
   width: ${props =>
-    props.expand && props.name === "sidenote" ? "80%" : "0px"};
+    props.expand && props.name === "sidenote" ? "90%" : "0px"};
   height: ${props =>
     props.expand && props.name === "sidenote" ? "80%" : "0px"};
   top: ${props => (props.expand && props.name === "sidenote" ? 50 : 100)}%;
@@ -50,6 +51,7 @@ const SidenoteContent = () => {
           Here I note some bugs I notice during project's development
         </Tooltip>
         <DimmerCloseBtn handleClick={handleClose} />
+        <Sidenotes />
       </div>
     </ContentStyle>
   );
