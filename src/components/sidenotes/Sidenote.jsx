@@ -4,11 +4,11 @@ import styled from "styled-components";
 
 const SidenoteLineStyle = styled.li`
   background-color: #cd201f;
-  border-radius: 3px;
+  border-radius: 5px;
   padding: 5px;
   margin: 0;
   color: white;
-  height: 200px;
+  height: auto;
   font-size: 12px;
   position: relative;
   overflow: hidden;
@@ -18,9 +18,6 @@ const SidenoteLineStyle = styled.li`
   }
 
   & span {
-    background-color: green;
-    width: 500px;
-    height: 100px;
   }
 `;
 

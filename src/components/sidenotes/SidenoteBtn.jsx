@@ -1,8 +1,9 @@
-import React, { useRef, useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
-import { arrowToRight } from "../../utils/arrowKeyframes";
 import { usePanelValues } from "../../context/panelContext";
-import { SET_COMPONENT, MINIMIZE } from "../../reducer/panelReducer";
+import { MINIMIZE, SET_COMPONENT } from "../../reducer/panelReducer";
+import { arrowToRight } from "../../utils/arrowKeyframes";
+import isMobile from "../../utils/isMobile";
 
 const BtnStyle = styled.div`
   position: fixed;
@@ -82,7 +83,7 @@ const BtnStyle = styled.div`
 const SidenoteBtn = () => {
   const X_POS = 10;
   const DURATION = 400;
-  const THRESHOLD = 250;
+  const THRESHOLD = isMobile() ? 50 : 250;
 
   const btnRef = useRef();
 
@@ -99,7 +100,9 @@ const SidenoteBtn = () => {
     if (btnX < THRESHOLD && isHold) {
       setBtnX(x);
     } else if (isHold) {
-      setBtnX(screenWidth / 2);
+      setBtnX(
+        screenWidth / 2 - btnRef.current.getBoundingClientRect().width / 2
+      );
       dispatch({ type: SET_COMPONENT, payload: "sidenote" });
     }
   };
