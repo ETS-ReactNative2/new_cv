@@ -27,7 +27,7 @@ const ItemDimmerClose = styled.span`
 
 const DimmerCloseBtn = ({ handleClick }) => {
     return (
-        <ItemDimmerClose onClick={handleClick}>
+        <ItemDimmerClose onClick={() => handleClick(true)}>
             <i className='fas fa-times'></i>
         </ItemDimmerClose>
     )

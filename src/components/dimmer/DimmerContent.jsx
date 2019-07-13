@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react'
+import React, { useRef, useState, useEffect } from 'react'
 import styled from 'styled-components'
 import Quote from '../skills/Quote'
 import CircularGauge from '../skills/CircularGauge'
@@ -64,6 +64,7 @@ const DimmerContent = () => {
     const itemContentShadowRef = useRef()
 
     const [isQuoteDisplayed, setQuoteDisplay] = useState(false)
+    const [isClosed, setClose] = useState(true)
 
     const [{ item, panelWidth, panelHeight, panelX, panelY, expand, expandDuration, componentName }, dispatch] = usePanelValues()
 
@@ -72,10 +73,16 @@ const DimmerContent = () => {
         dispatch({ type: SET_NAME, payload: name })
     }
 
-    const handleClose = () => {
+    const handleClose = isClosed => {
         setQuoteDisplay(false)
+        setClose(isClosed)
         dispatch({ type: MINIMIZE })
     }
+
+    useEffect(() => {
+        if (expand)
+            setClose(false)
+    }, [expand])
 
     return (
         <ItemContentShadow
@@ -97,6 +104,7 @@ const DimmerContent = () => {
                     item && item.skills.map((skill, i) => (
                         <CircularGauge
                             key={i}
+                            isClosed={isClosed}
                             index={i}
                             displayQuote={displayQuote}
                             skill={skill} 

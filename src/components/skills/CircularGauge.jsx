@@ -85,8 +85,7 @@ const CircularGauge = ({
   skill,
   displayQuote,
   index,
-  defaultCircumference = 0,
-  defaultOffset = 0
+  isClosed
 }) => {
   const { name, percent, colors } = skill;
   const transitionDuration = 5000;
@@ -96,11 +95,11 @@ const CircularGauge = ({
   const intervalRef = useRef(increaseInterval);
 
   const [value, setValue] = useState(0);
-  const [circumference, setCircumference] = useState(defaultCircumference);
-  const [offset, setOffset] = useState(defaultOffset);
+  const [circumference, setCircumference] = useState(0);
+  const [offset, setOffset] = useState(0);
   const [circleSelected, setSelect] = useState({ index, isSelected: false });
 
-  const [{ currentIndex, expand }, dispatch] = usePanelValues();
+  const [{ currentIndex, expand, expandDuration }, dispatch] = usePanelValues();
 
   let interval = transitionDuration / percent;
 
@@ -113,26 +112,37 @@ const CircularGauge = ({
     const strokeTransition = () => {
       let radius = progressRef.current.r.baseVal.value;
       setCircumference(2 * Math.PI * radius);
-      setOffset((circumference * (100 - percent)) / 100);
-      if (offset > 0 && circumference > 0) {
-        progressRef.current.style.transition = `stroke-dashoffset ${transitionDuration}ms ease`;
-        progressRef.current.style.strokeDashoffset = offset;
-      }
+      if (circumference > 0) {
+        setOffset((circumference * (100 - percent)) / 100);
+        if (offset > 0) {
+          progressRef.current.style.transition = `stroke-dashoffset ${transitionDuration}ms 1000ms ease-in-out`;
+          progressRef.current.style.strokeDashoffset = offset;
+        }
+      }      
     };
-
+    
     strokeTransition();
 
-    if (!expand) {
-      setTimeout(() => {
-        progressRef.current.style.transition = `stroke-dashoffset 0ms ease`;
-        setCircumference(0);
-        setOffset(0);
-        setValue(0);
-      }, transitionDuration / 3);
-    }
+    // if (isClosed) {
+      // console.log(isClosed)
+      // setTimeout(() => {
+        // progressRef.current.style.transition = `stroke-dashoffset 0ms ease`;
+        // progressRef.current.style.transition = ``;
+        // setCircumference(0);
+        // setOffset(0);
+        // setValue(0);
+      // }, 1000);
+    // }
 
     // return () => setSelect(prevSelect => ({ ...prevSelect, isSelected: false }));
-  }, [expand, circumference, offset, percent]);
+    return () =>  {
+      if (isClosed) {
+        progressRef.current.style.transition = ``;
+        setOffset(0);
+        setValue(0);
+      }
+    }
+  }, [circumference, offset, isClosed]);
 
   useEffect(() => {
     let intervalIncrease = intervalRef.current;
@@ -140,15 +150,16 @@ const CircularGauge = ({
     const increaseValue = () => {
       intervalIncrease = setInterval(() => {
         if (value === percent) {
-          setValue(percent);
+          // setValue(percent);
           clearInterval(intervalIncrease);
+          intervalIncrease = null
         } else setValue(v => v + 1);
       }, interval);
     };
 
     if (expand) increaseValue();
     return () => clearInterval(intervalIncrease);
-  }, [interval, percent, value, expand]);
+  }, [expand, value]);
 
   useEffect(() => {
     setSelect(prevSelect => ({
