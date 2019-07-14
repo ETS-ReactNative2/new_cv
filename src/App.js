@@ -81,7 +81,7 @@ const AppStyle = styled.div`
   background-image: linear-gradient(-45deg, #00103a 0%, #3e5f77 100%);
   /* url(stars_bg.gif); */
   width: 100%;
-  height: 100%;
+  height: 100vh;
   overflow: hidden;
   padding: 0;
   margin: 0;
