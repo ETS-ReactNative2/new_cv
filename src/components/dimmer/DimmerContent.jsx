@@ -103,8 +103,6 @@ const DimmerContent = () => {
     dispatch({ type: MINIMIZE });
   };
 
-  console.log(expand);
-
   return (
     <ItemContentShadow
       ref={itemContentShadowRef}
