@@ -5,7 +5,7 @@ import styled from "styled-components";
 const SidenoteLineStyle = styled.li`
   background-color: #cd201f;
   border-radius: 5px;
-  padding: 5px 5px 0px 5px;
+  padding: 5px;
   margin-bottom: 10px;
   color: white;
   height: auto;

@@ -11,7 +11,7 @@ const ContentStyle = styled.div`
   width: ${props =>
     props.expand && props.name === "sidenote" ? "95%" : "0px"};
   height: ${props =>
-    props.expand && props.name === "sidenote" ? "80%" : "0px"};
+    props.expand && props.name === "sidenote" ? "75%" : "0px"};
   top: ${props => (props.expand && props.name === "sidenote" ? 50 : 100)}%;
   left: 50%;
   transform: translate(
@@ -28,7 +28,7 @@ const ContentStyle = styled.div`
   & > div {
     width: 100%;
     height: 100%;
-    overflow: hidden;
+    position: relative;
 
     &:first-child {
       font-size: 0.85em;
