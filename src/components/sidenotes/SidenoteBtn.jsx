@@ -36,7 +36,7 @@ const BtnStyle = styled.div`
     justify-items: center;
     transform: translateX(
       ${props =>
-        props.isHold ? (props.x < props.threshold ? 12.5 : -25) : 37.5}%
+        props.isHold ? 12.5 : props.x < props.threshold ? 37.5 : -25}%
     );
     transition: transform ${props => props.duration}ms ease;
     margin: 0;
