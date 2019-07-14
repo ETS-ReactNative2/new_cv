@@ -6,7 +6,10 @@ import Sidenote from "./Sidenote";
 const SidenotesListStyle = styled.ul`
   margin: 0px;
   padding: 0px;
-  overflow: auto;
+  position: relative;
+  height: 100%;
+  border: 1px solid green;
+  overflow: hidden;
 `;
 
 const Sidenotes = () => {

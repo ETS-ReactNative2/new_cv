@@ -6,27 +6,43 @@ const SidenoteLineStyle = styled.li`
   background-color: #cd201f;
   border-radius: 5px;
   padding: 5px;
-  margin: 0;
+  margin-bottom: 10px;
   color: white;
   height: auto;
   font-size: 12px;
   position: relative;
-  overflow: hidden;
 
-  & i {
-    margin: 0 10px 0 0;
+  & > i {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    margin: 0;
+    padding: 0;
   }
 
-  & span {
+  & > .sidenote {
+    & h4 {
+      margin: 5px 0px 5px 20px;
+    }
+
+    & span {
+      padding: 5px;
+      background-color: forestgreen;
+      color: #000;
+      border-radius: 5px;
+      position: absolute;
+      right: 10px;
+      top: 10px;
+    }
   }
 `;
 
 const Sidenote = ({ sidenote }) => {
   return (
     <SidenoteLineStyle>
-      {/* <i className={sidenote.icon} /> */}
-      <span>
-        <ReactMarkdown source={sidenote.description} escapeHtml={false} />
+      <i className="fas fa-info-circle" />
+      <span className="sidenote">
+        <ReactMarkdown source={sidenote} escapeHtml={false} />
       </span>
     </SidenoteLineStyle>
   );

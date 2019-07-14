@@ -6,10 +6,11 @@ import { arrowToRight } from "../../utils/arrowKeyframes";
 import isMobile from "../../utils/isMobile";
 
 const BtnStyle = styled.div`
+  cursor: pointer;
   position: fixed;
   margin: 0;
   padding: 0;
-  bottom: 10px;
+  bottom: 5px;
   right: ${props => props.x}px;
   width: 50px;
   height: 50px;
@@ -35,7 +36,7 @@ const BtnStyle = styled.div`
     justify-items: center;
     transform: translateX(
       ${props =>
-        props.isHold ? (props.x < props.threshold ? 12.5 : -25) : 37.5}%
+        props.isHold ? 12.5 : props.x < props.threshold ? 37.5 : -25}%
     );
     transition: transform ${props => props.duration}ms ease;
     margin: 0;
@@ -103,6 +104,7 @@ const SidenoteBtn = () => {
       setBtnX(
         screenWidth / 2 - btnRef.current.getBoundingClientRect().width / 2
       );
+      setHold(false);
       dispatch({ type: SET_COMPONENT, payload: "sidenote" });
     }
   };
