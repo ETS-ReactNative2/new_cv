@@ -5,7 +5,6 @@ import "./App.css";
 import Panels from "./components/panel/Panels";
 import Dimmer from "./components/dimmer/Dimmer";
 import SidenoteBtn from "./components/sidenotes/SidenoteBtn";
-import { usePanelValues } from "./context/panelContext";
 import devices from "./utils/devices";
 
 const shooting = keyframes`

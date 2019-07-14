@@ -3,11 +3,13 @@ import styled from "styled-components";
 import { usePanelValues } from "../../context/panelContext";
 import Tooltip from "../tooltip/Tooltip";
 import Sidenotes from "./Sidenotes";
+import devices from "../../utils/devices";
 
 const ContentStyle = styled.div`
+  border-radius: 5px;
   opacity: ${props => (props.expand && props.name === "sidenote" ? 1 : 0)};
   width: ${props =>
-    props.expand && props.name === "sidenote" ? "90%" : "0px"};
+    props.expand && props.name === "sidenote" ? "95%" : "0px"};
   height: ${props =>
     props.expand && props.name === "sidenote" ? "80%" : "0px"};
   top: ${props => (props.expand && props.name === "sidenote" ? 50 : 100)}%;
@@ -26,6 +28,11 @@ const ContentStyle = styled.div`
   & > div {
     width: 100%;
     height: 100%;
+    overflow: hidden;
+
+    &:first-child {
+      font-size: 0.85em;
+    }
   }
 `;
 
@@ -40,7 +47,7 @@ const SidenoteContent = () => {
     >
       <div>
         <Tooltip>
-          Here I note some bugs I notice during project's development
+          Here some note about bugs I notice during project's development
         </Tooltip>
         <Sidenotes />
       </div>
