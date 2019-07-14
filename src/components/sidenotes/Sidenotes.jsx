@@ -8,8 +8,7 @@ const SidenotesListStyle = styled.ul`
   padding: 0px;
   position: relative;
   height: 100%;
-  border: 1px solid green;
-  overflow: hidden;
+  overflow-y: auto;
 `;
 
 const Sidenotes = () => {

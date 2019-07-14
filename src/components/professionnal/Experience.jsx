@@ -37,6 +37,7 @@ const ExperienceStyle = styled.li`
     font-size: 0.85em;
     margin-left: 20px;
     padding-bottom: 20px;
+    border: 1px solid transparent;
 
     & > .highlight {
       & a {
