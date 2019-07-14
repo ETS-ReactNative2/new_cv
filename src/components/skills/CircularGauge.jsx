@@ -85,21 +85,23 @@ const CircularGauge = ({
   skill,
   displayQuote,
   index,
-  isClosed
+  expand,
+  radius,
+  cx,
+  cy
 }) => {
   const { name, percent, colors } = skill;
   const transitionDuration = 5000;
   let increaseInterval;
+  let circumference = 2 * Math.PI * radius;
 
   const progressRef = useRef();
-  const intervalRef = useRef(increaseInterval);
 
   const [value, setValue] = useState(0);
-  const [circumference, setCircumference] = useState(0);
   const [offset, setOffset] = useState(0);
   const [circleSelected, setSelect] = useState({ index, isSelected: false });
 
-  const [{ currentIndex, expand, expandDuration }, dispatch] = usePanelValues();
+  const [{ currentIndex }, dispatch] = usePanelValues();
 
   let interval = transitionDuration / percent;
 
@@ -108,58 +110,44 @@ const CircularGauge = ({
     displayQuote(name, currentIndex);
   };
 
+  const increaseValue = () => {
+    increaseInterval = setInterval(() => {
+      if (value >= percent) {
+        clearInterval(increaseInterval);
+        setValue(percent);
+      } else setValue(v => v + 1);
+    }, interval);
+  };
+
   useEffect(() => {
-    const strokeTransition = () => {
-      let radius = progressRef.current.r.baseVal.value;
-      setCircumference(2 * Math.PI * radius);
-      if (circumference > 0) {
-        setOffset((circumference * (100 - percent)) / 100);
-        if (offset > 0) {
-          progressRef.current.style.transition = `stroke-dashoffset ${transitionDuration}ms 1000ms ease-in-out`;
-          progressRef.current.style.strokeDashoffset = offset;
-        }
-      }      
-    };
-    
-    strokeTransition();
+    return () =>
+      setSelect(prevSelect => ({ ...prevSelect, isSelected: false }));
+  }, [expand]);
 
-    // if (isClosed) {
-      // console.log(isClosed)
-      // setTimeout(() => {
-        // progressRef.current.style.transition = `stroke-dashoffset 0ms ease`;
-        // progressRef.current.style.transition = ``;
-        // setCircumference(0);
-        // setOffset(0);
-        // setValue(0);
-      // }, 1000);
-    // }
-
-    // return () => setSelect(prevSelect => ({ ...prevSelect, isSelected: false }));
-    return () =>  {
-      if (isClosed) {
-        progressRef.current.style.transition = ``;
-        setOffset(0);
+  useEffect(() => {
+    if (expand) {
+      progressRef.current.style.transition = `stroke-dashoffset ${transitionDuration}ms ease-in-out`;
+      setOffset((circumference * (100 - percent)) / 100);
+    } else {
+      progressRef.current.style.transition = `stroke-dashoffset 0ms ease`;
+      setTimeout(() => {
         setValue(0);
-      }
+        setOffset(circumference);
+      }, 100);
     }
-  }, [circumference, offset, isClosed]);
+  }, [expand, offset]);
 
   useEffect(() => {
-    let intervalIncrease = intervalRef.current;
+    if (offset > 0)
+      setTimeout(() => {
+        progressRef.current.style.strokeDashoffset = offset;
+      }, 100);
+  }, [offset]);
 
-    const increaseValue = () => {
-      intervalIncrease = setInterval(() => {
-        if (value === percent) {
-          // setValue(percent);
-          clearInterval(intervalIncrease);
-          intervalIncrease = null
-        } else setValue(v => v + 1);
-      }, interval);
-    };
-
+  useEffect(() => {
     if (expand) increaseValue();
-    return () => clearInterval(intervalIncrease);
-  }, [expand, value]);
+    return () => clearInterval(increaseInterval);
+  }, [value, expand]);
 
   useEffect(() => {
     setSelect(prevSelect => ({
@@ -194,17 +182,17 @@ const CircularGauge = ({
             </defs>
           )}
           <circle
-            cx="50"
-            cy="50"
-            r="40"
+            cx={cx}
+            cy={cy}
+            r={radius}
             className="circle__progress circle__progress--path"
           />
           <circle
             stroke={`${colors.length > 0 && "url(#gradient)"}`}
             ref={progressRef}
-            cx="50"
-            cy="50"
-            r="40"
+            cx={cx}
+            cy={cy}
+            r={radius}
             className="circle__progress circle__progress--fill"
           />
         </svg>
