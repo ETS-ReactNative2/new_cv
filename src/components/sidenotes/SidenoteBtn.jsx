@@ -84,7 +84,7 @@ const BtnStyle = styled.div`
 const SidenoteBtn = () => {
   const X_POS = 10;
   const DURATION = 400;
-  const THRESHOLD = isMobile() ? 50 : 250;
+  const THRESHOLD = window.screen.width / 4;
 
   const btnRef = useRef();
 
