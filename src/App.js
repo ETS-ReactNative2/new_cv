@@ -9,8 +9,9 @@ import devices from "./utils/devices";
 
 const shooting = keyframes`
   0% { transform: translateX(0) rotate(45deg); }
-  100% { transform: translate(${window.screen.width * 2}px, ${window.screen
-  .width * 2}px); }
+  100% { transform: translate(${window.screen.width}px, ${
+  window.screen.width
+}px); }
 `;
 
 const tail = keyframes`
