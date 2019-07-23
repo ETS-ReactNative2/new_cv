@@ -21,7 +21,7 @@ const ExperienceStyle = styled.li`
         ease-in-out;
     }
 
-    & .item-title {
+    & .item-entreprise {
       font-weight: bold;
     }
 
@@ -33,13 +33,17 @@ const ExperienceStyle = styled.li`
     }
   }
 
-  & .item-description {
+  & .item-content {
     font-size: 0.85em;
     margin-left: 20px;
     padding-bottom: 20px;
     border: 1px solid transparent;
 
-    & > .highlight {
+    & .sidenote {
+      font-size: 0.6em;
+    }
+
+    /* & > .highlight {
       & a {
         text-decoration: none;
         color: darkgreen;
@@ -51,19 +55,19 @@ const ExperienceStyle = styled.li`
         border-radius: 10px;
         padding: 0 5px;
       }
-    }
+    } */
   }
 
   @media ${devices.desktop} {
     padding: 20px 0 80px;
 
-    & .item-description {
+    & .item-content {
       padding-bottom: 80px;
     }
   }
 
   @media ${devices.mobileL} {
-    font-size: 0.7em;
+    font-size: 0.85em;
   }
 `;
 
@@ -124,12 +128,28 @@ const Experience = ({ item, index, currentIndex, setIndex }) => {
         className="item-header"
       >
         <i ref={itemIconArrow} className="fas fa-caret-right" />
-        <span className="item-title">{item.title}</span>
+        <span className="item-entreprise">{item.entreprise}</span>
         <span className="item-date">{item.date}</span>
       </div>
-      <span ref={itemContentRef} className="item-description">
-        <ReactMarkdown escapeHtml={false} source={item.description} />
-      </span>
+      <div ref={itemContentRef} className="item-content">
+        <h3>{item.job}</h3>
+        <h4>
+          <u>Project:</u>
+          {item.project}
+        </h4>
+        <p>{item.description}</p>
+        {item.achievements.length > 0 && (
+          <p>
+            <strong>Achievements:</strong>
+            <ul>
+              {item.achievements.map(achievement => (
+                <li>{achievement}</li>
+              ))}
+            </ul>
+          </p>
+        )}
+        {item.note && <p className="sidenote">{`Note: ${item.note}`}</p>}
+      </div>
     </ExperienceStyle>
   );
 };
