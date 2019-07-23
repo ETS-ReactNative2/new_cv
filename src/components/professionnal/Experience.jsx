@@ -40,22 +40,17 @@ const ExperienceStyle = styled.li`
     border: 1px solid transparent;
 
     & .sidenote {
-      font-size: 0.6em;
+      font-size: 0.8em;
     }
 
-    /* & > .highlight {
-      & a {
-        text-decoration: none;
-        color: darkgreen;
-      }
+    & .achievement-style {
+      margin-left: 20px;
+    }
 
-      & span {
-        background-color: royalblue;
-        color: white;
-        border-radius: 10px;
-        padding: 0 5px;
-      }
-    } */
+    & .item-label {
+      margin-right: 15px;
+      border-bottom: 2px dash black;
+    }
   }
 
   @media ${devices.desktop} {
@@ -69,7 +64,33 @@ const ExperienceStyle = styled.li`
   @media ${devices.mobileL} {
     font-size: 0.85em;
   }
-`;
+`
+
+const PillStyle = styled.span`
+  height: 25px;
+  min-width: 70px;
+  background-color: cadetblue;
+  margin: 0 5px 15px;
+  padding: 3px 5px;
+  position: relative;
+  overflow: hidden;
+  border-radius: 8px;
+  box-shadow: 3px 2px 4px rgba(0, 0, 0, .4);
+
+  @media ${devices.desktop} {
+    width: 170px;
+    height: 40px;
+    border-radius: 15px;
+    margin: 25px;
+    padding: 10px 15px;
+  }
+
+  @media ${devices.mobileL} {
+      height: 15px;
+      padding: 0 5px;
+      border-radius: 4px;
+  }
+`
 
 const Experience = ({ item, index, currentIndex, setIndex }) => {
   const itemRef = useRef();
@@ -132,22 +153,33 @@ const Experience = ({ item, index, currentIndex, setIndex }) => {
         <span className="item-date">{item.date}</span>
       </div>
       <div ref={itemContentRef} className="item-content">
-        <h3>{item.job}</h3>
+        <PillStyle>{item.job}</PillStyle>
         <h4>
-          <u>Project:</u>
+          <label className='item-label'>Project:</label>
           {item.project}
         </h4>
         <p>{item.description}</p>
-        {item.achievements.length > 0 && (
+        {
+          item.achievements.length > 0 &&
           <p>
             <strong>Achievements:</strong>
             <ul>
               {item.achievements.map(achievement => (
-                <li>{achievement}</li>
+                <li>
+                  <i className='fas fa-arrow-right'></i>
+                  <span className='achievement-style'>{achievement}</span>
+                </li>
               ))}
             </ul>
           </p>
-        )}
+        }
+        {
+          item.stack.length > 0 &&
+          <div>
+            <strong><label className='item-label'>Stack:</label> </strong>
+            {item.stack.map(s => <PillStyle>{s}</PillStyle>)}
+          </div>
+        }
         {item.note && <p className="sidenote">{`Note: ${item.note}`}</p>}
       </div>
     </ExperienceStyle>
